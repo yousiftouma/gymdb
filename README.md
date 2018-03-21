@@ -29,4 +29,8 @@ We are planning on using a pipeline that consists of pushing to our repository,
 building/testing using Travis, and if everything passes,
 deploying to for example Heroku.
 
+It might be worth noting that we plan to use "The Movie DB" API to get our data.
+If necessary, we can also integrate with IMDBs OmdbAPI which is also open,
+but requires payments to get access to everything.
+
 
