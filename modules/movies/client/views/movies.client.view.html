@@ -1,3 +1,13 @@
 <section>
-  This is the Movies view
+This is the Movies view
+  <div class="input-group ">
+
+    <input class="form-control" type="text" ng-enter="vm.doSearch()">
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button" ng-click="vm.doSearch()">
+          <span class="glyphicon glyphicon-search"></span>
+      </button>
+    </span>
+
+  </div>
 </section>
