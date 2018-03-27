@@ -12,7 +12,7 @@
     // Config logic
     menuService.addMenuItem('topbar', {
       title: 'Browse movies',
-      // state:'browsemovies',
+      state:'movies',
       roles: ['*']
     });
     // ...
