@@ -1,13 +1,25 @@
 <section>
-This is the Movies view
-  <div class="input-group ">
-
-    <input class="form-control" type="text" ng-enter="vm.doSearch()">
+  <div class="input-group mt-1">
+    <input class="form-control" type="text" ng-enter="vm.doSearch()" placeholder="Search for movie ..." name="searchField">
     <span class="input-group-btn">
       <button class="btn btn-default" type="button" ng-click="vm.doSearch()">
           <span class="glyphicon glyphicon-search"></span>
       </button>
     </span>
+  </div>
 
+  <div class="row mt-1">
+    <div class="col-xs-12 col-md-4 col-sm-6 col-lg-4 movie-container">
+      <div class="poster-container">
+        <img class="img-responsive">
+      </div>
+      <div class="movie-info-container">
+        movie info here
+      </div>
+    </div>
+
+
+    <div class="col-xs-12 col-md-4 col-sm-6 col-lg-4">test2</div>
+    <div class="col-xs-12 col-md-4 col-sm-6 col-lg-4">test3</div>
   </div>
 </section>
