@@ -3,19 +3,22 @@
 
   angular
     .module('movies')
-    .directive('movies', movies);
+    .directive('ngEnter', ngenter);
 
-  movies.$inject = [/* Example: '$state', '$window' */];
+  ngenter.$inject = [/* Example: '$state', '$window' */];
 
-  function movies(/* Example: $state, $window */) {
+  function ngenter(/* Example: $state, $window */) {
     return {
-      template: '<div></div>',
-      restrict: 'E',
       link: function postLink(scope, element, attrs) {
-        // Movies directive logic
-        // ...
+        element.bind('keydown keypress', function (event) {
+          if (event.which === 13) {
+            scope.$apply(function () {
+              scope.$eval(attrs.ngEnter, { 'event': event });
+            });
 
-        element.text('this is the movies directive');
+            event.preventDefault();
+          }
+        });
       }
     };
   }
