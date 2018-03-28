@@ -2,14 +2,35 @@
 	margin-top: 1%
 }
 
+.rh-1 {
+	display: block;
+	height: 300px;
+	overflow: hidden;
+}
+
+
+.movie-description-length {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 10;
+	-webkit-box-orient: vertical;
+}
+
 .movie-container {
 	background-color: #00b3ee;
+
 }
 
 .poster-container {
-	background-color: black;
+
+}
+
+.poster-size {
+	max-height: 300px;
 }
 
 .movie-info-container {
 	background-color: #3e8f3e;
+
+
 }

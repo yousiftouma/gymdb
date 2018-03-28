@@ -1,6 +1,7 @@
 <section>
   <div class="input-group mt-1">
-    <input class="form-control" type="text" ng-enter="vm.doSearch()" placeholder="Search for movie ..." name="searchField">
+    <input class="form-control" type="text" ng-enter="vm.doSearch()" placeholder="Search for movie ..."
+           ng-model="vm.searchField">
     <span class="input-group-btn">
       <button class="btn btn-default" type="button" ng-click="vm.doSearch()">
           <span class="glyphicon glyphicon-search"></span>
@@ -8,18 +9,39 @@
     </span>
   </div>
 
-  <div class="row mt-1">
-    <div class="col-xs-12 col-md-4 col-sm-6 col-lg-4 movie-container">
-      <div class="poster-container">
-        <img class="img-responsive">
-      </div>
-      <div class="movie-info-container">
-        movie info here
+  <div class="row mt-1 rh-1">
+
+    <div class="col-md-6">
+      <div class="media movie-container col-md-12">
+
+        <div class="poster-container media-left">
+          <img class="poster-size media-object" ng-model="vm.posterSrc" src="{{vm.posterSrc}}">
+        </div>
+        <div class="movie-info-container media-body">
+          <div>
+            <h4 class="media-heading" ng-model="vm.movie.title">{{vm.movie.title}}</h4>
+          </div>
+          <div>
+            <p class="movie-description-length" ng-model="vm.movie.overview">{{vm.movie.overview}}</p>
+          </div>
+        </div>
       </div>
     </div>
 
-
-    <div class="col-xs-12 col-md-4 col-sm-6 col-lg-4">test2</div>
-    <div class="col-xs-12 col-md-4 col-sm-6 col-lg-4">test3</div>
+    <div class=" col-md-6 ">
+      <div class="movie-container col-md-12">
+        <div class="poster-container">
+          <img class="img-responsive" ng-model="vm.posterSrc2" src="{{vm.posterSrc2}}">
+        </div>
+        <div class="movie-info-container">
+          <div>
+            <p ng-model="vm.movie2.title">{{vm.movie2.title}}</p>
+          </div>
+          <div>
+            <p class="movie-description-length" ng-model="vm.movie2.overview">{{vm.movie2.overview}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
