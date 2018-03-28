@@ -75,6 +75,6 @@ module.exports = {
   },
   movieDbInfo: {
     apiKey: 'a9ccf18bfd1e165ccc865fb465f70e78',
-    baseUrl: 'https://api.themoviedb.org/3/'
+    baseUrl: 'api.themoviedb.org'
   }
 };

@@ -49,12 +49,13 @@ exports.list = function (req, res) {
 exports.search = function (req, res) {
   var options = {
     host: config.movieDbInfo.baseUrl,
-    path: 'search/movie?api_key=' + config.movieDbInfo.apiKey + '&query=' + req.params.query,
+    path: '/3/search/movie?api_key=' + config.movieDbInfo.apiKey + '&query=' + encodeURI(req.params.query),
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
     }
   };
+  console.log(options.host + options.path);
   networkModule.getJson(options, function (statusCode, jsonObject) {
     console.log('sending: ');
     console.log(jsonObject);
