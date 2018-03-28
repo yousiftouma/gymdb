@@ -5,16 +5,19 @@
     .module('movies')
     .factory('moviesService', moviesService);
 
-  moviesService.$inject = [/* Example: '$state', '$window' */];
+  moviesService.$inject = ['$http'];
 
-  function moviesService(/* Example: $state, $window */) {
+  function moviesService($http) {
     // Movies service logic
     // ...
 
     // Public API
     return {
-      someMethod: function () {
-        return true;
+      searchMovies: function (query) {
+        return $http({
+          method: 'GET',
+          url: `/api/movies/search/${query}`
+        });
       }
     };
   }
