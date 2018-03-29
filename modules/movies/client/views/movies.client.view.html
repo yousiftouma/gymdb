@@ -1,4 +1,4 @@
-<section class="page-background">
+<section>
   <div class="input-group mt-1">
     <input class="form-control" type="text" ng-enter="vm.doSearch()" placeholder="Search for movie ..."
            ng-model="vm.searchField">
@@ -17,10 +17,11 @@
 
       <div class="col-md-6 mt-2">
         <div class="media movie-container col-md-12 nopadding ">
-          <div class="poster-container media-left">
-            <img class="poster-size media-object"  src="{{vm.baseImagePath + movie.poster_path}}">
+          <div class="media-left">
+            <img class="poster-size media-object"
+                 ng-src="{{movie.poster_path == null && 'modules/movies/client/img/defaultPoster.jpg' || vm.baseImagePath + movie.poster_path}}">
           </div>
-          <div class="movie-info-container media-body">
+          <div class="media-body">
             <div>
               <h4 class="media-heading mb-2 mt-2">{{movie.title}}</h4>
               <h5>Rating: {{movie.vote_average}}</h5>
