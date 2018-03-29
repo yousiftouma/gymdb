@@ -19,14 +19,18 @@
 
     function doSearch() {
       var data = vm.searchField;
-      movieService.searchMovies(data).then(populateMovies, handleError);
+
+      if(data !== null && data !== '') {
+        movieService.searchMovies(data).then(populateMovies, handleError);
+      }
 
     }
 
     function populateMovies(response) {
+      vm.movieCount = response.data.total_results;
       vm.movies = response.data.results;
       vm.baseImagePath = posterConfig.imageBaseUrl + posterConfig.posterSizes.xl;
-
+      vm.searchComplete = true;
     }
     function handleError(response) {
       console.log(response);

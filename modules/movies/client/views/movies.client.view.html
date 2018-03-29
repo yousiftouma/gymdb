@@ -9,6 +9,10 @@
     </span>
   </div>
 
+  <h4 ng-class="{'invisible': !vm.searchComplete}" ng-model="vm.movieCount">
+    Movies found: {{vm.movieCount}}</h4>
+
+
   <div class="row">
 
     <div ng-repeat="movie in vm.movies">
