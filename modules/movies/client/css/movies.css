@@ -1,5 +1,13 @@
 .mt-1 {
-	margin-top: 1%
+	margin-top: 1%;
+}
+
+.mt-2 {
+	margin-top: 2%;
+}
+
+.mb-2 {
+	margin-bottom: 2%;
 }
 
 .rh-1 {
@@ -8,6 +16,11 @@
 	overflow: hidden;
 }
 
+@media (max-width: 991px) {
+	[class*="col-"] {
+		margin-bottom: 15px;
+	}
+}
 
 .movie-description-length {
 	overflow: hidden;
@@ -17,12 +30,11 @@
 }
 
 .movie-container {
-	background-color: #00b3ee;
+	background-color: lightgrey;
 
 }
 
 .poster-container {
-
 }
 
 .poster-size {
@@ -30,7 +42,6 @@
 }
 
 .movie-info-container {
-	background-color: #3e8f3e;
-
+	background-color: lightgrey;
 
 }
