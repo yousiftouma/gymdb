@@ -30,11 +30,16 @@
 }
 
 .movie-container {
-	background-color: lightgrey;
 
 }
 
 .poster-container {
+
+}
+
+.nopadding {
+	padding: 0 !important;
+	margin: 0 !important;
 }
 
 .poster-size {
@@ -42,6 +47,10 @@
 }
 
 .movie-info-container {
-	background-color: lightgrey;
 
+
+}
+
+.page-background {
+	background-color: lightgrey;
 }

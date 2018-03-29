@@ -1,4 +1,4 @@
-<section>
+<section class="page-background">
   <div class="input-group mt-1">
     <input class="form-control" type="text" ng-enter="vm.doSearch()" placeholder="Search for movie ..."
            ng-model="vm.searchField">
@@ -9,41 +9,30 @@
     </span>
   </div>
 
-  <div class="row mt-2 ">
+  <div class="row">
 
-    <div class="col-md-6">
-      <div class="media movie-container col-md-12">
-        <div class="poster-container media-left">
-          <img class="poster-size media-object" ng-model="vm.posterSrc" src="{{vm.posterSrc}}">
-        </div>
-        <div class="movie-info-container media-body">
-          <div>
-            <h4 class="media-heading mb-2" ng-model="vm.movie.title">{{vm.movie.title}}</h4>
-            <h5 ng-model="vm.movie.vote_average">Rating: {{vm.movie.vote_average}}</h5>
+    <div ng-repeat="movie in vm.movies">
+      <div class="clearfix" ng-if="$index % 2 == 0"></div>
+
+
+      <div class="col-md-6 mt-2">
+        <div class="media movie-container col-md-12 nopadding ">
+          <div class="poster-container media-left">
+            <img class="poster-size media-object"  src="{{vm.baseImagePath + movie.poster_path}}">
           </div>
-          <div>
-            <p class="movie-description-length" ng-model="vm.movie.overview">{{vm.movie.overview}}</p>
+          <div class="movie-info-container media-body">
+            <div>
+              <h4 class="media-heading mb-2 mt-2">{{movie.title}}</h4>
+              <h5>Rating: {{movie.vote_average}}</h5>
+            </div>
+            <div>
+              <p class="movie-description-length">{{movie.overview}}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class=" col-md-6 ">
-      <div class="media movie-container col-md-12">
-        <div class="poster-container media-left">
-          <img class="poster-size media-object" ng-model="vm.posterSrc2" src="{{vm.posterSrc2}}">
-        </div>
-        <div class="movie-info-container media-body">
-          <div>
-            <h4 class="media-heading" ng-model="vm.movie2.title">{{vm.movie2.title}}</h4>
-            <h5 ng-model="vm.movie2.vote_average">Rating: {{vm.movie2.vote_average}}</h5>
-          </div>
-          <div>
-            <p class="movie-description-length" ng-model="vm.movie2.overview">{{vm.movie2.overview}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
   </div>
 </section>

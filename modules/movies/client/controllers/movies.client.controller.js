@@ -24,11 +24,9 @@
     }
 
     function populateMovies(response) {
-      vm.movie = response.data.results[0];
-      vm.movie2 = response.data.results[1];
+      vm.movies = response.data.results;
+      vm.baseImagePath = posterConfig.imageBaseUrl + posterConfig.posterSizes.xl;
 
-      vm.posterSrc = posterConfig.imageBaseUrl + posterConfig.posterSizes.xl + vm.movie.poster_path;
-      vm.posterSrc2 = posterConfig.imageBaseUrl + posterConfig.posterSizes.xl + vm.movie2.poster_path;
     }
     function handleError(response) {
       console.log(response);
