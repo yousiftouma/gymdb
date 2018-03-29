@@ -19,12 +19,6 @@ body {
 	margin-bottom: 2%;
 }
 
-.rh-1 {
-	display: block;
-	height: 300px;
-	overflow: hidden;
-}
-
 @media (max-width: 991px) {
 	[class*="col-"] {
 		margin-bottom: 15px;
@@ -43,8 +37,6 @@ body {
 	box-shadow: 4px 4px 10px lightgrey;
 }
 
-
-
 .nopadding {
 	padding: 0 !important;
 	margin: 0 !important;
@@ -54,6 +46,5 @@ body {
 	height: 300px;
 	width: 200px;
 }
-
 
 
