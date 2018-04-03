@@ -49,7 +49,8 @@ exports.list = function (req, res) {
 exports.search = function (req, res) {
   var options = {
     host: config.movieDbInfo.baseUrl,
-    path: '/3/search/movie?api_key=' + config.movieDbInfo.apiKey + '&query=' + encodeURI(req.params.query),
+    path: '/3/search/movie?api_key=' + config.movieDbInfo.apiKey + '&query=' + encodeURI(req.params.query) +
+    '&page=' + encodeURI(req.params.page),
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'

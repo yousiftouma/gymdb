@@ -5,6 +5,6 @@ var moviesController = require('../controllers/movies.server.controller');
 module.exports = function (app) {
   // Routing logic
   // ...
-  app.route('/api/movies/search/:query')
+  app.route('/api/movies/search/:query/:page')
     .get(moviesController.search);
 };

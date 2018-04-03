@@ -13,10 +13,10 @@
 
     // Public API
     return {
-      searchMovies: function (query) {
+      searchMovies: function (query, page) {
         return $http({
           method: 'GET',
-          url: `/api/movies/search/${query}`
+          url: `/api/movies/search/${query}/${page}`
         });
       }
     };
