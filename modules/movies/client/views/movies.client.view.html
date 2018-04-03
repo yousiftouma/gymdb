@@ -9,13 +9,16 @@
     </span>
   </div>
 
-  <h4 ng-class="{'invisible': !vm.searchComplete}" ng-model="vm.movieCount">
-    Movies found: {{vm.movieCount}}</h4>
+  <h4 ng-class="{'invisible': !vm.searchComplete}" ng-model="vm.query">
+    Query: {{vm.query}} </h4>
+
+  <h4 ng-class="{'invisible': !vm.searchComplete}" ng-model="vm.data.total_results">
+    Movies found: {{vm.data.total_results}}</h4>
 
 
   <div class="row">
 
-    <div ng-repeat="movie in vm.movies">
+    <div ng-repeat="movie in vm.data.results">
       <div class="clearfix" ng-if="$index % 2 == 0"></div>
 
 
@@ -37,7 +40,17 @@
         </div>
       </div>
     </div>
-
-
   </div>
+
+  <nav ng-class="{'invisible': !vm.searchComplete}" aria-label="Page navigation">
+    <ul class="pager">
+      <li>
+        <a ng-class="{'invisible': vm.currentPage == 1}" href="" aria-label="Previous" aria-hidden="true" ng-click="vm.previousPage()">Previous</a>
+      </li>
+      <li>
+        <a ng-class="{'invisible': vm.currentPage == vm.data.total_pages}" href="" aria-label="Next" aria-hidden="true" ng-click="vm.nextPage()">Next</a>
+      </li>
+    </ul>
+  </nav>
+
 </section>

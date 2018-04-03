@@ -5,11 +5,14 @@
     .module('movies')
     .controller('MoviesController', MoviesController);
 
-  MoviesController.$inject = ['$http', 'moviesService', 'posterConfig'];
+  MoviesController.$inject = ['$http', 'moviesService', 'posterConfig', '$anchorScroll'];
 
-  function MoviesController($http, movieService, posterConfig) {
+  function MoviesController($http, movieService, posterConfig, $anchorScroll) {
     var vm = this;
     vm.doSearch = doSearch;
+    vm.previousPage = previousPage;
+    vm.nextPage = nextPage;
+    vm.currentPage = 1;
     // Movies controller logic
     // ...
     init();
@@ -18,22 +21,41 @@
     }
 
     function doSearch() {
-      var data = vm.searchField;
+      vm.query = vm.searchField;
 
-      if(data !== null && data !== '') {
-        movieService.searchMovies(data).then(populateMovies, handleError);
+      if (vm.query !== null && vm.query !== '') {
+        vm.currentPage = 1;
+        fetchMovies();
       }
-
     }
 
     function populateMovies(response) {
-      vm.movieCount = response.data.total_results;
-      vm.movies = response.data.results;
+      vm.data = response.data;
       vm.baseImagePath = posterConfig.imageBaseUrl + posterConfig.posterSizes.xl;
       vm.searchComplete = true;
     }
     function handleError(response) {
       console.log(response);
+    }
+
+    function nextPage() {
+      if (vm.currentPage < vm.data.total_pages) {
+        vm.currentPage = vm.currentPage + 1;
+        fetchMovies();
+        $anchorScroll();
+      }
+    }
+
+    function previousPage() {
+      if (vm.currentPage > 1) {
+        vm.currentPage = vm.currentPage - 1;
+        fetchMovies();
+        $anchorScroll();
+      }
+    }
+
+    function fetchMovies() {
+      movieService.searchMovies(vm.query, vm.currentPage).then(populateMovies, handleError);
     }
   }
 }());
