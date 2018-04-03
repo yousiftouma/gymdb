@@ -1,0 +1,50 @@
+body {
+	margin:0;
+	padding:0;
+	width:100%;
+	height: 100%;
+	min-height: 100%;
+	background: #F4F4F4;
+}
+
+.mt-1 {
+	margin-top: 1%;
+}
+
+.mt-2 {
+	margin-top: 2%;
+}
+
+.mb-2 {
+	margin-bottom: 2%;
+}
+
+@media (max-width: 991px) {
+	[class*="col-"] {
+		margin-bottom: 15px;
+	}
+}
+
+.movie-description-length {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 10;
+	-webkit-box-orient: vertical;
+}
+
+.movie-container {
+	background-color: white;
+	box-shadow: 4px 4px 10px lightgrey;
+}
+
+.nopadding {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.poster-size {
+	height: 300px;
+	width: 200px;
+}
+
+
