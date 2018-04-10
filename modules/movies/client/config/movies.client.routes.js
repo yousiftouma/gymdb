@@ -3,7 +3,7 @@
 
   // Setting up route
   angular
-    .module('movies')
+    .module('movies.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];
@@ -12,9 +12,20 @@
     // Movies state routing
     $stateProvider
       .state('movies', {
+        abstract: true,
         url: '/movies',
-        templateUrl: 'modules/movies/client/views/movies.client.view.html',
+        template: '<ui-view/>'
+      })
+      .state('movies.browse', {
+        url: '',
+        templateUrl: '/modules/movies/client/views/browse-movies.client.view.html',
         controller: 'MoviesController',
+        controllerAs: 'vm'
+      })
+      .state('movies.details', {
+        url: '/:id',
+        templateUrl: '/modules/movies/client/views/movie-details.client.view.html',
+        controller: 'MovieDetailsController',
         controllerAs: 'vm'
       });
   }

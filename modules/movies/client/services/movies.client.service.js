@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('movies')
+    .module('movies.services')
     .factory('moviesService', moviesService);
 
   moviesService.$inject = ['$http'];

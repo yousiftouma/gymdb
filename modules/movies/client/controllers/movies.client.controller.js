@@ -21,9 +21,8 @@
     }
 
     function doSearch() {
-      vm.query = vm.searchField;
-
-      if (vm.query !== null && vm.query !== '') {
+      if (vm.searchField !== null && vm.searchField !== '' && vm.searchField !== undefined) {
+        vm.query = vm.searchField;
         vm.currentPage = 1;
         fetchMovies();
       }

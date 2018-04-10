@@ -56,7 +56,6 @@ exports.search = function (req, res) {
       'Content-Type': 'application/json'
     }
   };
-  console.log(options.host + options.path);
   networkModule.getJson(options, function (statusCode, jsonObject) {
     console.log('sending: ');
     console.log(jsonObject);
