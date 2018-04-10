@@ -26,7 +26,16 @@
         url: '/:id',
         templateUrl: '/modules/movies/client/views/movie-details.client.view.html',
         controller: 'MovieDetailsController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+          movieResolve: getMovie
+        }
       });
+  }
+
+  getMovie.$inject = ['$stateParams', 'moviesService'];
+
+  function getMovie($stateParams, movieService) {
+    return movieService.getMovie($stateParams.id);
   }
 }());

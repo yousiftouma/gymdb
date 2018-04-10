@@ -18,6 +18,12 @@
           method: 'GET',
           url: `/api/movies/search/${query}/${page}`
         });
+      },
+      getMovie: function (id) {
+        return $http({
+          method: 'GET',
+          url: `/api/movies/${id}`
+        });
       }
     };
   }

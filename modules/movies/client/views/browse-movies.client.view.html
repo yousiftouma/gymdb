@@ -30,7 +30,9 @@
           </div>
           <div class="media-body">
             <div>
-              <h4 class="media-heading mb-2 mt-2">{{movie.title}}</h4>
+              <a ui-sref="movies.details({id: movie.id})">
+                <h4 class="media-heading mb-2 mt-2">{{movie.title}}</h4>
+              </a>
               <h5>Rating: {{movie.vote_average}}</h5>
             </div>
             <div>

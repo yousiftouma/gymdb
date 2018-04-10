@@ -7,4 +7,6 @@ module.exports = function (app) {
   // ...
   app.route('/api/movies/search/:query/:page')
     .get(moviesController.search);
+  app.route('/api/movies/:id')
+    .get(moviesController.read);
 };

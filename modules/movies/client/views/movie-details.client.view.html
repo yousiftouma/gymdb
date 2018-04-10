@@ -1,3 +1,22 @@
 <section>
-  This is the Movie details view
+  <div class="jumbotron row">
+    <div class="col-md-3">
+      <img class="poster-size"
+           ng-src="{{vm.movie.poster_path == null && 'modules/movies/client/img/defaultPoster.jpg' || vm.baseImagePath + vm.movie.poster_path}}">
+    </div>
+    <div class="col-md-9">
+      <h2 class="title-header" ng-bind="vm.movie.title"></h2>
+      <span class="ml-1 movie-year">({{vm.movie.release_date.split('-')[0]}})</span>
+
+      <div class="progress progress-width progress-color">
+        <div class="progress-bar " role="progressbar" style="width:{{vm.movie.vote_average*10}}%;">
+          {{vm.movie.vote_average}}
+        </div>
+      </div>
+      <p>
+        <div class="tagline">"{{vm.movie.tagline}}"</div>
+      </p>
+      <p ng-bind="vm.movie.overview"></p>
+    </div>
+  </div>
 </section>

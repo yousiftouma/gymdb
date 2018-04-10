@@ -19,6 +19,10 @@ body {
 	margin-bottom: 2%;
 }
 
+.ml-1 {
+	margin-left: 1%;
+}
+
 @media (max-width: 991px) {
 	[class*="col-"] {
 		margin-bottom: 15px;
@@ -47,4 +51,21 @@ body {
 	width: 200px;
 }
 
+.title-header {
+	display: inline-block;
+}
+.movie-year {
+	font-size: x-large;
+	color: #646464;
+}
 
+.progress-width {
+	max-width: 20%;
+}
+
+.tagline {
+	font-size: medium;
+	font-style: italic;
+	color: #888888;
+
+}

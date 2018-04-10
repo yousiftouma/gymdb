@@ -1,21 +1,19 @@
-(function() {
+(function () {
   'use strict';
 
   angular
     .module('movies')
     .controller('MovieDetailsController', MovieDetailsController);
 
-  MovieDetailsController.$inject = ['$scope'];
+  MovieDetailsController.$inject = ['movieResolve', 'posterConfig'];
 
-  function MovieDetailsController($scope) {
+  function MovieDetailsController(movieResolve, posterConfig) {
     var vm = this;
-
-    // Movie details controller logic
-    // ...
-
+    vm.baseImagePath = posterConfig.imageBaseUrl + posterConfig.posterSizes.xl;
+    vm.movie = movieResolve.data;
     init();
 
     function init() {
     }
   }
-})();
+}());

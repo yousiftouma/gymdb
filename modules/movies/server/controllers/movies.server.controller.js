@@ -22,7 +22,19 @@ exports.create = function (req, res) {
  * Show the current Movie
  */
 exports.read = function (req, res) {
-
+  var options = {
+    host: config.movieDbInfo.baseUrl,
+    path: '/3/movie/' + req.params.id + '?api_key=' + config.movieDbInfo.apiKey,
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+  networkModule.getJson(options, function (statusCode, jsonObject) {
+    console.log('sending: ');
+    console.log(jsonObject);
+    res.json(jsonObject);
+  });
 };
 
 /**
@@ -57,8 +69,6 @@ exports.search = function (req, res) {
     }
   };
   networkModule.getJson(options, function (statusCode, jsonObject) {
-    console.log('sending: ');
-    console.log(jsonObject);
     res.json(jsonObject);
   });
 };
