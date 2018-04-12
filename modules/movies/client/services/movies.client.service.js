@@ -24,6 +24,13 @@
           method: 'GET',
           url: `/api/movies/${id}`
         });
+      },
+      postComment: function (comment) {
+        return $http({
+          method: 'POST',
+          url: '/api/comments',
+          data: comment
+        });
       }
     };
   }

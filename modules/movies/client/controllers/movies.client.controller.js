@@ -5,9 +5,9 @@
     .module('movies')
     .controller('MoviesController', MoviesController);
 
-  MoviesController.$inject = ['$http', 'moviesService', 'posterConfig', '$anchorScroll'];
+  MoviesController.$inject = ['moviesService', 'posterConfig', '$anchorScroll'];
 
-  function MoviesController($http, movieService, posterConfig, $anchorScroll) {
+  function MoviesController(moviesService, posterConfig, $anchorScroll) {
     var vm = this;
     vm.doSearch = doSearch;
     vm.previousPage = previousPage;
@@ -33,6 +33,7 @@
       vm.baseImagePath = posterConfig.imageBaseUrl + posterConfig.posterSizes.xl;
       vm.searchComplete = true;
     }
+
     function handleError(response) {
       console.log(response);
     }
@@ -54,7 +55,8 @@
     }
 
     function fetchMovies() {
-      movieService.searchMovies(vm.query, vm.currentPage).then(populateMovies, handleError);
+      moviesService.searchMovies(vm.query, vm.currentPage).then(populateMovies, handleError);
     }
+
   }
 }());
