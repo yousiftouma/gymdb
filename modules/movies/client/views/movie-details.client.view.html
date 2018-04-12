@@ -28,7 +28,8 @@
       </div>
       <div class="comment-block">
         <form action="">
-          <textarea class="comment-textarea" cols="30" rows="3" placeholder="Add comment..."></textarea>
+          <textarea class="comment-textarea" cols="30" rows="3" placeholder="Add comment..."
+          ng-model="vm.commentContent"></textarea>
         </form>
         <button class="btn btn-sm comment-button" ng-click="vm.postComment()">Comment</button>
       </div>

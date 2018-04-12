@@ -13,8 +13,18 @@ var path = require('path'),
  * Create a Comment
  */
 exports.create = function (req, res) {
-  var comment = new Comment(req.body);
-  console.log('logging req.user and comment')
+  let comment = new Comment(req.body);
+  comment.user = req.user;
+  comment.save(function (err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(comment);
+    }
+  });
+  console.log('logging req.user and comment');
   console.log(req.user);
   console.log(comment);
   console.log('finished logging req.user and comment');

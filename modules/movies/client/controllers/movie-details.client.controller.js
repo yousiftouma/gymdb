@@ -18,9 +18,20 @@
     function init() {
     }
 
-    function postComment() {
-      const data = { movie: 1, content: 'this is my post', user: 2 };
-      moviesService.postComment(data);
+    function handleError(response) {
+      console.log('error');
+      console.log(response);
     }
+
+    function showComment(response) {
+      console.log(response);
+      vm.commentContent = '';
+    }
+
+    function postComment() {
+      const data = { movie: vm.movie.id, content: vm.commentContent, user: vm.user };
+      moviesService.postComment(data).then(showComment, handleError);
+    }
+
   }
 }());
