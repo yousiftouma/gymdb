@@ -8,7 +8,7 @@
   MoviesController.$inject = ['moviesService', 'posterConfig', '$anchorScroll'];
 
   function MoviesController(moviesService, posterConfig, $anchorScroll) {
-    var vm = this;
+    let vm = this;
     vm.doSearch = doSearch;
     vm.previousPage = previousPage;
     vm.nextPage = nextPage;

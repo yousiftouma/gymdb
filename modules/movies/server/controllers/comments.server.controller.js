@@ -57,3 +57,14 @@ exports.delete = function (req, res) {
 exports.list = function (req, res) {
 
 };
+
+/**
+ * List of comments for a specific movie
+ */
+exports.commentsByMovieId = function (req, res) {
+  let comments = Comment.find({ movie: req.params.movie }, function (error, docs) {
+    console.log('loggin docs');
+    console.log(docs);
+    res.json(docs);
+  });
+};

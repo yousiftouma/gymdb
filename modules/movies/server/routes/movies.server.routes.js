@@ -13,4 +13,6 @@ module.exports = function (app) {
 
   app.route('/api/comments')
     .post(commentsController.create);
+  app.route('/api/comments/:movie')
+    .get(commentsController.commentsByMovieId);
 };

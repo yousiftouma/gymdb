@@ -8,7 +8,7 @@
   MovieDetailsController.$inject = ['moviesService', 'movieResolve', 'posterConfig', 'Authentication'];
 
   function MovieDetailsController(moviesService, movieResolve, posterConfig, authentication) {
-    var vm = this;
+    let vm = this;
     vm.postComment = postComment;
     vm.baseImagePath = posterConfig.imageBaseUrl + posterConfig.posterSizes.xl;
     vm.movie = movieResolve.data;
@@ -16,6 +16,7 @@
     init();
 
     function init() {
+
     }
 
     function handleError(response) {
