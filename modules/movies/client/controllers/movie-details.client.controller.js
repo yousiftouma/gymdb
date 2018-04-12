@@ -25,12 +25,13 @@
     }
 
     function showComment(response) {
+      console.log('success');
       console.log(response);
       vm.commentContent = '';
     }
 
     function postComment() {
-      const data = { movie: vm.movie.id, content: vm.commentContent, user: vm.user };
+      const data = { movie: vm.movie.id, content: vm.commentContent };
       moviesService.postComment(data).then(showComment, handleError);
     }
 

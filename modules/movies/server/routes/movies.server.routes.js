@@ -1,7 +1,6 @@
 'use strict';
 
 var moviesController = require('../controllers/movies.server.controller');
-var commentsController = require('../controllers/comments.server.controller');
 
 module.exports = function (app) {
   // Routing logic
@@ -10,9 +9,6 @@ module.exports = function (app) {
     .get(moviesController.search);
   app.route('/api/movies/:id')
     .get(moviesController.read);
-
   app.route('/api/comments')
-    .post(commentsController.create);
-  app.route('/api/comments/:movie')
-    .get(commentsController.commentsByMovieId);
+    .post(moviesController.createOrUpdate);
 };
