@@ -6,7 +6,7 @@
     </div>
     <div class="col-md-9">
       <h2 class="title-header" ng-bind="vm.movie.title"></h2>
-      <span class="ml-1 movie-year">({{vm.movie.release_date.split('-')[0]}})</span>
+      <span ng-class="{'invisible': vm.movie.release_date == ''}" class="ml-1 movie-year">({{vm.movie.release_date.split('-')[0]}})</span>
 
       <div class="progress progress-width progress-color">
         <div class="progress-bar " role="progressbar" style="width:{{vm.movie.vote_average*10}}%;">
@@ -14,9 +14,24 @@
         </div>
       </div>
       <p>
-        <div class="tagline">"{{vm.movie.tagline}}"</div>
+        <div ng-class="{'invisible': vm.movie.tagline == ''}" class="tagline">"{{vm.movie.tagline}}"</div>
       </p>
       <p ng-bind="vm.movie.overview"></p>
+    </div>
+  </div>
+
+
+  <div class="comments">
+    <div class="comment-wrap">
+      <div class="photo">
+        <div class="avatar" style="background-image: url({{vm.user.profileImageURL}})"></div>
+      </div>
+      <div class="comment-block">
+        <form action="">
+          <textarea class="comment-textarea" cols="30" rows="3" placeholder="Add comment..."></textarea>
+        </form>
+        <button class="btn btn-sm comment-button" ng-click="vm.postComment()">Comment</button>
+      </div>
     </div>
   </div>
 </section>
