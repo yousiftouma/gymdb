@@ -25,7 +25,7 @@
 
     function showComment(response) {
       console.log('success');
-      vm.movie.comments = response.data[0].comments;
+      vm.movie.comments = response.data.comments;
       vm.commentContent = '';
 
       $location.hash(`comment${vm.movie.comments.length}`);
