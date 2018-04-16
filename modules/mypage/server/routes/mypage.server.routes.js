@@ -7,4 +7,6 @@ module.exports = function (app) {
   // ...
   app.route('/api/mypage')
     .get(mypageController.getOrCreate);
+  app.route('/api/mypage/seen/update')
+    .post(mypageController.updateSeenList);
 };
