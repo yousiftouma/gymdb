@@ -3,14 +3,14 @@
 /**
  * Module dependencies.
  */
-var path = require('path'),
+let path = require('path'),
   mongoose = require('mongoose'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   Movie = mongoose.model('Movie'),
   _ = require('lodash');
 
-var networkModule = require('../../../../config/lib/network');
-var config = require(path.resolve('./config/config'));
+let networkModule = require('../../../../config/lib/network');
+let config = require(path.resolve('./config/config'));
 
 /**
  * Create a Movie

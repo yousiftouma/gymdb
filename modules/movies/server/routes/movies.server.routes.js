@@ -1,6 +1,6 @@
 'use strict';
 
-var moviesController = require('../controllers/movies.server.controller');
+let moviesController = require('../controllers/movies.server.controller');
 
 module.exports = function (app) {
   // Routing logic
