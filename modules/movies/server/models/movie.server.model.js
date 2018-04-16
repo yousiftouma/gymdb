@@ -3,36 +3,36 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+let mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 /**
  * Movie Schema
  */
-var MovieSchema = new Schema({
+let MovieSchema = new Schema({
     // Movie model fields
     // ...
-    comments: [{
-      user: {
-        name: {
-          type: String
-        },
-        picturePath: {
-          type: String
-        }
+  comments: [{
+    user: {
+      name: {
+        type: String
       },
-      content: {
-        type: String,
-        default: '',
-        trim: true,
-        required: 'Comment can not be empty'
+      picturePath: {
+        type: String
       }
-    }],
-    tmdbId: {
-      type: Number,
-      required: 'Movie must have a TMDB id'
+    },
+    content: {
+      type: String,
+      default: '',
+      trim: true,
+      required: 'Comment can not be empty'
     }
-  }, // fixes bug in mongoose
-  {usePushEach: true});
+  }],
+  tmdbId: {
+    type: Number,
+    required: 'Movie must have a TMDB id'
+  }
+}, // fixes bug in mongoose
+  { usePushEach: true });
 
 mongoose.model('Movie', MovieSchema);
