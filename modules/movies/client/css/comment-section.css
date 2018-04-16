@@ -46,17 +46,20 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .photo {
 	padding-top: 0.625rem;
 	display: table-cell;
-	width: 3.5rem;
+	width: 10rem;
+	margin-right: 10px;
 }
 .photo .avatar {
-	height: 7.5rem;
-	width: 7.5rem;
+	height: 5rem;
+	width: 5rem;
 	border-radius: 50%;
 	background-size: contain;
-	margin-right: 10px;
+
+	margin: 0 auto;
 }
 
 .comment-block {
+	position: relative;
 	padding: 1rem;
 	background-color: #fff;
 	display: table-cell;
@@ -71,20 +74,25 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .comment-text {
 	margin-bottom: 1.25rem;
+	word-break: break-all;
 }
+
+.username {
+	text-align: center;
+	width: 10rem;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
 
 .bottom-comment {
+	position: absolute;
+	bottom: 0;
+	right: 0;
 	color: #acb4c2;
-	font-size: 0.875rem;
+	font-size: 1.25rem;
 }
 
-.comment-date {
-	float: left;
-}
-
-.comment-actions {
-	float: right;
-}
 .comment-actions li {
 	display: inline;
 	margin: -2px;

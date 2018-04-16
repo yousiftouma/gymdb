@@ -34,5 +34,20 @@
         <button class="btn btn-sm comment-button" ng-click="vm.postComment()">Comment</button>
       </div>
     </div>
+
+    <div id="comment{{$index+1}}" class="comment-wrap" ng-repeat="comment in vm.movie.comments">
+      <div class="photo">
+        <div class="avatar"
+             style="background-image: url({{comment.user.picturePath}})"></div>
+        <p class="username">{{comment.user.name}}</p>
+      </div>
+      <div class="comment-block">
+        <p class="comment-text">{{comment.content}}</p>
+        <div class="bottom-comment mr-1">#{{$index+1}}</div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
 </section>

@@ -5,9 +5,9 @@
     .module('movies')
     .controller('MovieDetailsController', MovieDetailsController);
 
-  MovieDetailsController.$inject = ['moviesService', 'movieResolve', 'posterConfig', 'Authentication'];
+  MovieDetailsController.$inject = ['moviesService', 'movieResolve', 'posterConfig', 'Authentication', '$anchorScroll', '$location'];
 
-  function MovieDetailsController(moviesService, movieResolve, posterConfig, authentication) {
+  function MovieDetailsController(moviesService, movieResolve, posterConfig, authentication, $anchorScroll, $location) {
     let vm = this;
     vm.postComment = postComment;
     vm.baseImagePath = posterConfig.imageBaseUrl + posterConfig.posterSizes.xl;
@@ -16,18 +16,20 @@
     init();
 
     function init() {
-
     }
 
-    function handleError(response) {
-      console.log('error');
-      console.log(response);
+      function handleError(response) {
+        console.log('error');
+        console.log(response);
     }
 
     function showComment(response) {
       console.log('success');
-      console.log(response);
+      vm.movie.comments = response.data[0].comments;
       vm.commentContent = '';
+
+      $location.hash(`comment${vm.movie.comments.length}`);
+      $anchorScroll();
     }
 
     function postComment() {
