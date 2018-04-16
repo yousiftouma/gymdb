@@ -2,6 +2,11 @@ module.exports = {
   extends: [
     'airbnb/legacy'
   ],
+  parserOptions: {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
   rules: {
     camelcase: 0,
     'comma-dangle': [1, 'never'],
