@@ -17,31 +17,30 @@ var config = require(path.resolve('./config/config'));
  */
 exports.createOrUpdate = function (req, res) {
   let doc = null;
-  Movie.find({ tmdbId: req.body.movie }, function (error, movie) {
+  Movie.find({tmdbId: req.body.movie}, function (error, movie) {
     if (movie === undefined || movie.length === 0) {
       // Create a new movie document and persist in storage
+      console.log(req.user);
       doc = new Movie({
         tmdbId: req.body.movie,
         comments: [{
-          user: req.user,
+          user: {
+            name: req.user.username,
+            picturePath: req.user.profileImageURL
+          },
           content: req.body.content
         }]
       });
     } else {
-      console.log('logging movie');
-      console.log(movie);
       // Push new comment to array
       doc = movie[0];
-      console.log('logging doc');
-      console.log(doc);
-      console.log('logging doc.comments');
-      console.log(doc.comments);
       doc.comments.push({
-        user: req.user._id,
+        user: {
+          name: req.user.username,
+          picturePath: req.user.profileImageURL
+        },
         content: req.body.content
       });
-      console.log('logging pushed');
-      console.log(doc.comments);
     }
     doc.save(function (err) {
       if (err) {
@@ -69,8 +68,16 @@ exports.read = function (req, res) {
     }
   };
   networkModule.getJson(options, function (statusCode, jsonObject) {
-    // TODO append comments before returning
-    res.json(jsonObject);
+    Movie.find({tmdbId: req.params.id}, function (error, movie) {
+      let comments = null;
+      if (movie === undefined || movie.length === 0) {
+        comments = [];
+      } else {
+        comments = movie[0].comments;
+      }
+      jsonObject.comments = comments;
+      res.json(jsonObject);
+    });
   });
 };
 
