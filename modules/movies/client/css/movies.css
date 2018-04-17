@@ -82,14 +82,24 @@ body {
 	border-radius: 25px;
 	border: solid;
 	border-width: thin;
-	border-color: black;
 	background: transparent;
-	box-shadow: 4px 1px 4px lightgrey;
 }
 
-.btn-icon {
+.btn-icon-unpressed {
 	color: black;
 }
 
+.btn-icon-pressed {
+	color: #7ab7e0;
+}
 
+.btn-unpressed {
+	border-color: black;
+	box-shadow: 4px 1px 4px lightgrey;
+}
 
+.btn-pressed {
+	border-color: #7ab7e0;
+	background: #e0e0e0;
+	box-shadow: 2px 1px 2px lightgrey;
+}

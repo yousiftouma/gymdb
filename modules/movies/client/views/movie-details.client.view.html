@@ -14,11 +14,21 @@
         ({{vm.movie.release_date.split('-')[0]}})</span>
 
       <div class="mb-2">
-        <button type="button" class="btn btn-default btn-circle mr-1" uib-tooltip="I have seen this movie" tooltip-placement="left">
-          <span class="glyphicon glyphicon-plus btn-icon"></span>
+        <button type="button" class="btn btn-default btn-circle mr-1" onfocus="this.blur();"
+                uib-tooltip="{{vm.seenTooltip}}" tooltip-placement="left" ng-click="vm.updateSeenList()"
+                ng-class="{'btn-pressed': vm.userMovieInfo.isOnSeenList,
+                           'btn-unpressed': !vm.userMovieInfo.isOnSeenList}">
+          <span class="glyphicon"
+                ng-class="{'btn-icon-pressed glyphicon-minus': vm.userMovieInfo.isOnSeenList,
+                           'btn-icon-unpressed glyphicon-plus': !vm.userMovieInfo.isOnSeenList}"></span>
         </button>
-        <button type="button" class="btn btn-default btn-circle" uib-tooltip="Add to watchlist" tooltip-placement="right">
-          <span class="glyphicon glyphicon-bookmark btn-icon"></span>
+        <button type="button" class="btn btn-default btn-circle" onfocus="this.blur();"
+                uib-tooltip="{{vm.watchTooltip}}" tooltip-placement="right" ng-click="vm.updateWatchlist()"
+                ng-class="{'btn-pressed': vm.userMovieInfo.isOnWatchlist,
+                           'btn-unpressed': !vm.userMovieInfo.isOnWatchlist}">
+          <span class="glyphicon glyphicon-bookmark"
+                ng-class="{'btn-icon-pressed': vm.userMovieInfo.isOnWatchlist,
+                           'btn-icon-unpressed': !vm.userMovieInfo.isOnWatchlist}"></span>
         </button>
       </div>
 

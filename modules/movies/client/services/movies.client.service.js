@@ -49,6 +49,19 @@
           });
         }
       },
+      updateSeenList: function (info) {
+        return $http({
+          method: 'POST',
+          url: '/api/mypage/seen/update',
+          data: info
+        });
+      },
+      updateWatchlist: function (info) {
+        return $http({
+          method: 'POST',
+          url: '/api/mypage/watch/update',
+          data: info
+        });
       }
     };
   }
