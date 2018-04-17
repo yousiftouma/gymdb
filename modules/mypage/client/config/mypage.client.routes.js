@@ -13,9 +13,12 @@
     $stateProvider
       .state('mypage', {
         url: '/mypage',
-        templateUrl: 'modules/mypage/client/views/mypage.client.view.html',
+        templateUrl: '/modules/mypage/client/views/mypage.client.view.html',
         controller: 'MypageController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data: {
+          roles: ['users', 'admin']
+        }
       });
   }
 })();
