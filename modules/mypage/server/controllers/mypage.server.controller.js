@@ -46,6 +46,29 @@ exports.getOrCreate = function (req, res) {
 };
 
 /**
+ * Get info from the logged in users MyPage for a particular movie
+ * Returns an object with two bool properties for the given movie stating whether they are on the users
+ * different lists
+ */
+exports.getByTmdbId = function (req, res) {
+  let result = {};
+  Mypage.find({ user: req.user._id }, function (error, mypage) {
+    if (mypage === undefined || mypage.length === 0) {
+      // doesnt exist
+      result.isOnSeenList = false;
+      result.isOnWatchlist = false;
+    } else {
+      // Mypage exists, get it
+      let doc = mypage[0];
+      let id = parseInt(req.params.id, 10);
+      result.isOnSeenList = doc.seenMovies.filter(elem => elem.tmdbId === id).length > 0;
+      result.isOnWatchlist = doc.watchlist.filter(elem => elem.tmdbId === id).length > 0;
+    }
+    res.json(result);
+  });
+};
+
+/**
  * Update list of seen movies
  */
 exports.updateSeenList = function (req, res) {
