@@ -9,4 +9,6 @@ module.exports = function (app) {
     .get(mypageController.getOrCreate);
   app.route('/api/mypage/seen/update')
     .post(mypageController.updateSeenList);
+  app.route('/api/mypage/watch/update')
+    .post(mypageController.updateWatchList);
 };

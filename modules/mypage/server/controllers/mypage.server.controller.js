@@ -89,6 +89,41 @@ exports.updateSeenList = function (req, res) {
 };
 
 /**
+ * Update list of movies to watch
+ */
+exports.updateWatchList = function (req, res) {
+  let doc = null;
+  Mypage.find({ user: req.user._id }, function (error, mypage) {
+    if (mypage === undefined || mypage.length === 0) {
+      doc = createMyPage(req.user._id, res);
+    } else {
+      // Mypage exists, get it
+      doc = mypage[0];
+    }
+    if (req.body.delete) {
+      // We want to delete the movie from the watch list
+      doc.watchList = doc.watchList.filter(function (movie) {
+        return movie.id !== req.body.tmdbId;
+      });
+    } else {
+      // Insert a new movie
+      doc.watchList.push({
+        tmdbId: req.body.tmdbId
+      });
+    }
+    doc.save(function (err) {
+      if (err) {
+        console.log(err);
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+    });
+    res.json(doc);
+  });
+};
+
+/**
  * Delete an Mypage
  */
 exports.delete = function (req, res) {
