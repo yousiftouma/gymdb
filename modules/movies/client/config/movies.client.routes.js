@@ -28,14 +28,21 @@
         controller: 'MovieDetailsController',
         controllerAs: 'vm',
         resolve: {
-          movieResolve: getMovie
+          movieResolve: getMovie,
+          userMovieInfoResolve: getUserMovieInfo
         }
       });
   }
 
   getMovie.$inject = ['$stateParams', 'moviesService'];
+  getUserMovieInfo.$inject = ['$stateParams', 'moviesService'];
 
   function getMovie($stateParams, movieService) {
     return movieService.getMovie($stateParams.id);
+  }
+
+  function getUserMovieInfo($stateParams, movieService) {
+    // Gets info about the logged in user in relation to the movie
+    return movieService.getUserMovieInfo($stateParams.id);
   }
 }());

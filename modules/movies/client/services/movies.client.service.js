@@ -5,9 +5,9 @@
     .module('movies.services')
     .factory('moviesService', moviesService);
 
-  moviesService.$inject = ['$http'];
+  moviesService.$inject = ['$http', 'Authentication'];
 
-  function moviesService($http) {
+  function moviesService($http, authentication) {
     // Movies service logic
     // ...
 
@@ -31,6 +31,24 @@
           url: '/api/comments',
           data: comment
         });
+      },
+      getUserMovieInfo: function (id) {
+        if (authentication.user) {
+          return $http({
+            method: 'GET',
+            url: `/api/mypage/${id}`
+          });
+        } else {
+          return new Promise(function (resolve) {
+            return resolve({
+              data: {
+                error: true,
+                msg: 'Not logged in'
+              }
+            });
+          });
+        }
+      },
       }
     };
   }
