@@ -91,7 +91,7 @@ exports.updateSeenList = function (req, res) {
 /**
  * Update list of movies to watch
  */
-exports.updateWatchList = function (req, res) {
+exports.updateWatchlist = function (req, res) {
   let doc = null;
   Mypage.find({ user: req.user._id }, function (error, mypage) {
     if (mypage === undefined || mypage.length === 0) {
@@ -102,12 +102,12 @@ exports.updateWatchList = function (req, res) {
     }
     if (req.body.delete) {
       // We want to delete the movie from the watch list
-      doc.watchList = doc.watchList.filter(function (movie) {
-        return movie.id !== req.body.tmdbId;
+      doc.watchlist = doc.watchlist.filter(function (movie) {
+        return movie.tmdbId !== req.body.tmdbId;
       });
     } else {
       // Insert a new movie
-      doc.watchList.push({
+      doc.watchlist.push({
         tmdbId: req.body.tmdbId
       });
     }
