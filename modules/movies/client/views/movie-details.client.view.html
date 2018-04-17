@@ -8,13 +8,22 @@
       <h2 class="title-header" ng-bind="vm.movie.title"></h2>
       <span ng-class="{'invisible': vm.movie.release_date == ''}" class="ml-1 movie-year">({{vm.movie.release_date.split('-')[0]}})</span>
 
+      <div class="mb-2">
+        <button type="button" class="btn btn-default btn-circle mr-1" uib-tooltip="I have seen this movie" tooltip-placement="left">
+          <span class="glyphicon glyphicon-plus btn-icon"></span>
+        </button>
+        <button type="button" class="btn btn-default btn-circle" uib-tooltip="Add to watchlist" tooltip-placement="right">
+          <span class="glyphicon glyphicon-bookmark btn-icon"></span>
+        </button>
+      </div>
+
       <div class="progress progress-width progress-color">
         <div class="progress-bar " role="progressbar" style="width:{{vm.movie.vote_average*10}}%;">
           {{vm.movie.vote_average}}
         </div>
       </div>
       <p>
-        <div ng-class="{'invisible': vm.movie.tagline == ''}" class="tagline">"{{vm.movie.tagline}}"</div>
+      <div ng-class="{'invisible': vm.movie.tagline == ''}" class="tagline">"{{vm.movie.tagline}}"</div>
       </p>
       <p ng-bind="vm.movie.overview"></p>
     </div>
@@ -29,7 +38,7 @@
       <div class="comment-block">
         <form action="">
           <textarea class="comment-textarea" cols="30" rows="3" placeholder="Add comment..."
-          ng-model="vm.commentContent"></textarea>
+                    ng-model="vm.commentContent"></textarea>
         </form>
         <button class="btn btn-sm comment-button" ng-click="vm.postComment()">Comment</button>
       </div>
@@ -44,9 +53,9 @@
       <div class="comment-block">
         <p class="comment-text">{{comment.content}}</p>
         <div class="bottom-comment mr-1">#{{$index+1}}</div>
-        </div>
       </div>
     </div>
+  </div>
 
 
   </div>
