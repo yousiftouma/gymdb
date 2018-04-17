@@ -1,12 +1,17 @@
 <section>
   <div class="jumbotron row">
+
     <div class="col-md-3">
       <img class="poster-size"
-           ng-src="{{vm.movie.poster_path == null && 'modules/movies/client/img/defaultPoster.jpg' || vm.baseImagePath + vm.movie.poster_path}}">
+           ng-src="{{vm.movie.poster_path == null && 'modules/movies/client/img/defaultPoster.jpg' ||
+           vm.baseImagePath + vm.movie.poster_path}}">
     </div>
+
     <div class="col-md-9">
+
       <h2 class="title-header" ng-bind="vm.movie.title"></h2>
-      <span ng-class="{'invisible': vm.movie.release_date == ''}" class="ml-1 movie-year">({{vm.movie.release_date.split('-')[0]}})</span>
+      <span ng-class="{'invisible': vm.movie.release_date == ''}" class="ml-1 movie-year">
+        ({{vm.movie.release_date.split('-')[0]}})</span>
 
       <div class="mb-2">
         <button type="button" class="btn btn-default btn-circle mr-1" uib-tooltip="I have seen this movie" tooltip-placement="left">
@@ -22,10 +27,10 @@
           {{vm.movie.vote_average}}
         </div>
       </div>
-      <p>
-      <div ng-class="{'invisible': vm.movie.tagline == ''}" class="tagline">"{{vm.movie.tagline}}"</div>
-      </p>
+
+      <p><div ng-class="{'invisible': vm.movie.tagline == ''}" class="tagline">"{{vm.movie.tagline}}"</div></p>
       <p ng-bind="vm.movie.overview"></p>
+
     </div>
   </div>
 
@@ -57,6 +62,4 @@
     </div>
   </div>
 
-
-  </div>
 </section>
