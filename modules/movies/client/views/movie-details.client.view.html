@@ -15,7 +15,7 @@
 
       <div class="mb-2">
         <button type="button" class="btn btn-default btn-circle mr-1" onfocus="this.blur();"
-                uib-tooltip="{{vm.seenTooltip}}" tooltip-placement="left" ng-click="vm.updateSeenList()"
+                uib-tooltip="{{vm.seenTooltip}}" tooltip-placement="left" require-auth="vm.updateSeenList()"
                 ng-class="{'btn-pressed': vm.userMovieInfo.isOnSeenList,
                            'btn-unpressed': !vm.userMovieInfo.isOnSeenList}">
           <span class="glyphicon"
@@ -23,7 +23,7 @@
                            'btn-icon-unpressed glyphicon-plus': !vm.userMovieInfo.isOnSeenList}"></span>
         </button>
         <button type="button" class="btn btn-default btn-circle" onfocus="this.blur();"
-                uib-tooltip="{{vm.watchTooltip}}" tooltip-placement="right" ng-click="vm.updateWatchlist()"
+                uib-tooltip="{{vm.watchTooltip}}" tooltip-placement="right" require-auth="vm.updateWatchlist()"
                 ng-class="{'btn-pressed': vm.userMovieInfo.isOnWatchlist,
                            'btn-unpressed': !vm.userMovieInfo.isOnWatchlist}">
           <span class="glyphicon glyphicon-bookmark"

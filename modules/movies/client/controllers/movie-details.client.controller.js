@@ -54,9 +54,6 @@
     }
 
     function updateWatchlist() {
-      if (!vm.user) {
-        return;
-      }
       const data = { tmdbId: vm.movie.id, delete: vm.userMovieInfo.isOnWatchlist };
       moviesService.updateWatchlist(data).then(() => {
         vm.userMovieInfo = { ...vm.userMovieInfo.isOnWatchlist = !vm.userMovieInfo.isOnWatchlist, ...vm.userMovieInfo };
@@ -65,9 +62,6 @@
     }
 
     function updateSeenList() {
-      if (!vm.user) {
-        return;
-      }
       const data = { tmdbId: vm.movie.id, delete: vm.userMovieInfo.isOnSeenList };
       moviesService.updateSeenList(data).then(() => {
         vm.userMovieInfo = { ...vm.userMovieInfo.isOnSeenList = !vm.userMovieInfo.isOnSeenList, ...vm.userMovieInfo };
