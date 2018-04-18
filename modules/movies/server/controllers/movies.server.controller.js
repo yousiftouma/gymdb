@@ -17,7 +17,7 @@ let config = require(path.resolve('./config/config'));
  */
 exports.createOrUpdate = function (req, res) {
   let doc = null;
-  Movie.find({tmdbId: req.body.movie}, function (error, movie) {
+  Movie.find({ tmdbId: req.body.movie }, function (error, movie) {
     if (movie === undefined || movie.length === 0) {
       // Create a new movie document and persist in storage
       console.log(req.user);
@@ -68,7 +68,7 @@ exports.read = function (req, res) {
     }
   };
   networkModule.getJson(options, function (statusCode, jsonObject) {
-    Movie.find({tmdbId: req.params.id}, function (error, movie) {
+    Movie.find({ tmdbId: req.params.id }, function (error, movie) {
       let comments = null;
       if (movie === undefined || movie.length === 0) {
         comments = [];
@@ -82,24 +82,35 @@ exports.read = function (req, res) {
 };
 
 /**
- * Update a Movie
+ * Gets array of movie data based on an array of Tmdb ids
  */
-exports.update = function (req, res) {
-
-};
-
-/**
- * Delete an Movie
- */
-exports.delete = function (req, res) {
-
-};
-
-/**
- * List of Movies
- */
-exports.list = function (req, res) {
-
+exports.getByIds = function (req, res) {
+  let parsedIds = JSON.parse(req.params.ids);
+  let promises = [];
+  // Start fetching from tmdb api async using promises
+  parsedIds.forEach(function (movie) {
+    promises.push(new Promise(function (resolve) {
+      let options = {
+        host: config.movieDbInfo.baseUrl,
+        path: '/3/movie/' + 853479359 + '?api_key=' + config.movieDbInfo.apiKey,
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      networkModule.getJson(options, function (statusCode, jsonObject) {
+        if (statusCode !== 200) {
+          // We don't want explicit reject, just return an empty object instead if failed
+          resolve({});
+        }
+        resolve(jsonObject);
+      });
+    }));
+  });
+  // Return to response once all promises resolve
+  Promise.all(promises).then(function (result) {
+    res.json(result);
+  });
 };
 
 exports.search = function (req, res) {

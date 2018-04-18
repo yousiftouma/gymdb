@@ -9,6 +9,8 @@ module.exports = function (app) {
     .get(moviesController.search);
   app.route('/api/movies/:id')
     .get(moviesController.read);
+  app.route('/api/movies/list/:ids')
+    .get(moviesController.getByIds);
   app.route('/api/comments')
     .post(moviesController.createOrUpdate);
 };
