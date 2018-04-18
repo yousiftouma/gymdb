@@ -1,0 +1,27 @@
+<div class="row">
+
+  <div ng-repeat="movie in [{vote_average: 3, overview: 'hi', title: 'hu', poster_path: null}]">
+    <div class="clearfix" ng-if="$index % 2 == 0"></div>
+
+    <div class="col-md-6 mt-2">
+      <div class="media movie-container col-md-12 nopadding ">
+        <div class="media-left">
+          <img class="poster-size media-object"
+               ng-src="{{movie.poster_path == null && 'modules/movies/client/img/defaultPoster.jpg' ||
+                 vm.baseImagePath + movie.poster_path}}">
+        </div>
+        <div class="media-body">
+          <div>
+            <a ui-sref="movies.details({id: movie.id})">
+              <h4 class="media-heading mb-2 mt-2">{{movie.title}}</h4>
+            </a>
+            <h5>Rating: {{movie.vote_average}}</h5>
+          </div>
+          <div>
+            <p class="movie-description-length">{{movie.overview}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
