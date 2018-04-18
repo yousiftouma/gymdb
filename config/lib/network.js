@@ -1,9 +1,9 @@
 'use strict';
-var https = require('https');
+const https = require('https');
 
 module.exports.getJson = function (options, onResult) {
-  var request = https.request(options, function (res) {
-    var output = '';
+  let request = https.request(options, function (res) {
+    let output = '';
     res.setEncoding('utf8');
 
     res.on('data', function (chunk) {
@@ -11,14 +11,14 @@ module.exports.getJson = function (options, onResult) {
     });
 
     res.on('end', function () {
-      var jsonObj = JSON.parse(output);
+      let jsonObj = JSON.parse(output);
       onResult(res.statusCode, jsonObj);
     });
   });
 
   request.on('error', function (error) {
     console.log(error.message);
+    onResult(error.statusCode, error.message);
   });
-
   request.end();
 };
