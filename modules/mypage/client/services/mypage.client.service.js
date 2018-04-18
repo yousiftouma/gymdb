@@ -5,16 +5,28 @@
     .module('mypage')
     .factory('mypageService', mypageService);
 
-  mypageService.$inject = [/*Example: '$state', '$window' */];
+  mypageService.$inject = ['$http'];
 
-  function mypageService(/*Example: $state, $window */) {
+  function mypageService($http) {
     // Mypage service logic
     // ...
 
     // Public API
     return {
-      someMethod: function () {
-        return true;
+      getMyPage: function () {
+        return $http({
+          method: 'GET',
+          url: '/api/mypage'
+        });
+      },
+      getMovies: function (movies) {
+        if (movies.length === 0) {
+          return movies;
+        }
+        return $http({
+          method: 'GET',
+          url: `/api/movies/list/${JSON.stringify(movies)}`
+        });
       }
     };
   }
