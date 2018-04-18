@@ -84,7 +84,7 @@ exports.updateSeenList = function (req, res) {
     if (req.body.delete) {
       // We want to delete the movie from the seen list
       doc.seenMovies = doc.seenMovies.filter(function (movie) {
-        return movie.id !== req.body.tmdbId;
+        return movie.tmdbId !== req.body.tmdbId;
       });
     } else if (req.body.update) {
       // This could only be that the rating has changed
