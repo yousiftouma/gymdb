@@ -92,7 +92,7 @@ exports.getByIds = function (req, res) {
     promises.push(new Promise(function (resolve) {
       let options = {
         host: config.movieDbInfo.baseUrl,
-        path: '/3/movie/' + 853479359 + '?api_key=' + config.movieDbInfo.apiKey,
+        path: '/3/movie/' + movie.tmdbId + '?api_key=' + config.movieDbInfo.apiKey,
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
