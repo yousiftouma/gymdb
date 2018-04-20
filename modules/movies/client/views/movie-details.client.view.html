@@ -15,15 +15,15 @@
 
       <div class="mb-2">
         <button type="button" class="btn btn-default btn-circle mr-1" onfocus="this.blur();"
-                uib-tooltip="{{vm.user ? (vm.userMovieInfo.isOnSeenList ?
+                uib-tooltip="{{vm.user ? (vm.userMovieInfo.isOnSeenMovies ?
                 'Remove from seen movies' : 'Add to seen movies') :
                  'You must be logged in to do this'}}"
-                tooltip-placement="bottom" require-auth="vm.updateSeenList()"
-                ng-class="{'btn-pressed': vm.userMovieInfo.isOnSeenList,
-                           'btn-unpressed': !vm.userMovieInfo.isOnSeenList}">
+                tooltip-placement="bottom" require-auth="vm.updateSeenMovies()"
+                ng-class="{'btn-pressed': vm.userMovieInfo.isOnSeenMovies,
+                           'btn-unpressed': !vm.userMovieInfo.isOnSeenMovies}">
           <span class="glyphicon"
-                ng-class="{'btn-icon-pressed glyphicon-minus': vm.userMovieInfo.isOnSeenList,
-                           'btn-icon-unpressed glyphicon-plus': !vm.userMovieInfo.isOnSeenList}"></span>
+                ng-class="{'btn-icon-pressed glyphicon-minus': vm.userMovieInfo.isOnSeenMovies,
+                           'btn-icon-unpressed glyphicon-plus': !vm.userMovieInfo.isOnSeenMovies}"></span>
         </button>
         <button type="button" class="btn btn-default btn-circle" onfocus="this.blur();"
                 uib-tooltip="{{vm.user ? (vm.userMovieInfo.isOnWatchlist ?

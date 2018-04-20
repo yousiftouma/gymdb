@@ -9,10 +9,12 @@
 
   function MypageWatchController($scope, myPageResolve, watchlistResolve, posterConfig, mypageService) {
     let vm = this;
+    console.log('in watch');
+
     vm.movies = watchlistResolve;
     vm.baseImagePath = posterConfig.imageBaseUrl + posterConfig.posterSizes.xl;
     vm.removeFromWatchlist = removeFromWatchlist;
-    vm.updateSeenList = updateSeenList;
+    vm.updateSeenMovies = updateSeenMovies;
     // Mypage controller logic
     // ...
 
@@ -30,16 +32,16 @@
       }, handleError);
     }
 
-    function updateSeenList(movieId, isSeen) {
+    function updateSeenMovies(movieId, isSeen) {
       const data = { tmdbId: movieId, delete: isSeen };
-      mypageService.updateSeenList(data).then(() => {
+      mypageService.updateSeenMovies(data).then(() => {
         vm.movies = vm.movies.map((movie) => {
           if (movie.id === movieId) {
             movie.isSeen = !isSeen;
           }
           return movie;
         });
-      });
+      }, handleError);
     }
 
     function handleError(error) {

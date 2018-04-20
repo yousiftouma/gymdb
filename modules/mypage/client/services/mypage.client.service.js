@@ -36,7 +36,7 @@
           });
         }
       },
-      updateSeenList: function (info) {
+      updateSeenMovies: function (info) {
         return $http({
           method: 'POST',
           url: '/api/mypage/seen/update',

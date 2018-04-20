@@ -55,13 +55,13 @@ exports.getByTmdbId = function (req, res) {
   Mypage.find({ user: req.user._id }, function (error, mypage) {
     if (mypage === undefined || mypage.length === 0) {
       // doesnt exist
-      result.isOnSeenList = false;
+      result.isOnSeenMovies = false;
       result.isOnWatchlist = false;
     } else {
       // Mypage exists, get it
       let doc = mypage[0];
       let id = parseInt(req.params.id, 10);
-      result.isOnSeenList = doc.seenMovies.filter(elem => elem.tmdbId === id).length > 0;
+      result.isOnSeenMovies = doc.seenMovies.filter(elem => elem.tmdbId === id).length > 0;
       result.isOnWatchlist = doc.watchlist.filter(elem => elem.tmdbId === id).length > 0;
     }
     res.json(result);
@@ -71,7 +71,7 @@ exports.getByTmdbId = function (req, res) {
 /**
  * Update list of seen movies
  */
-exports.updateSeenList = function (req, res) {
+exports.updateSeenMovies = function (req, res) {
   let doc = null;
   console.log(req);
   Mypage.find({ user: req.user._id }, function (error, mypage) {

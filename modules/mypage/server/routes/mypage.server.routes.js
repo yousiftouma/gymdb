@@ -10,7 +10,7 @@ module.exports = function (app) {
   app.route('/api/mypage/:id')
     .get(mypageController.getByTmdbId);
   app.route('/api/mypage/seen/update')
-    .post(mypageController.updateSeenList);
+    .post(mypageController.updateSeenMovies);
   app.route('/api/mypage/watch/update')
     .post(mypageController.updateWatchlist);
 };

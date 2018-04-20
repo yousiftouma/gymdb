@@ -13,7 +13,7 @@
     let vm = this;
     vm.postComment = postComment;
     vm.updateWatchlist = updateWatchlist;
-    vm.updateSeenList = updateSeenList;
+    vm.updateSeenMovies = updateSeenMovies;
     vm.baseImagePath = posterConfig.imageBaseUrl + posterConfig.posterSizes.xl;
     vm.movie = movieResolve.data;
     vm.userMovieInfo = userMovieInfoResolve.data;
@@ -38,21 +38,21 @@
     }
 
     function postComment() {
-      const data = {movie: vm.movie.id, content: vm.commentContent};
+      const data = { movie: vm.movie.id, content: vm.commentContent };
       moviesService.postComment(data).then(showComment, handleError);
     }
 
     function updateWatchlist() {
-      const data = {tmdbId: vm.movie.id, delete: vm.userMovieInfo.isOnWatchlist};
+      const data = { tmdbId: vm.movie.id, delete: vm.userMovieInfo.isOnWatchlist };
       mypageService.updateWatchlist(data).then(() => {
         vm.userMovieInfo.isOnWatchlist = !vm.userMovieInfo.isOnWatchlist;
       }, handleError);
     }
 
-    function updateSeenList() {
-      const data = {tmdbId: vm.movie.id, delete: vm.userMovieInfo.isOnSeenList};
-      mypageService.updateSeenList(data).then(() => {
-        vm.userMovieInfo.isOnSeenList = !vm.userMovieInfo.isOnSeenList;
+    function updateSeenMovies() {
+      const data = { tmdbId: vm.movie.id, delete: vm.userMovieInfo.isOnSeenMovies };
+      mypageService.updateSeenMovies(data).then(() => {
+        vm.userMovieInfo.isOnSeenMovies = !vm.userMovieInfo.isOnSeenMovies;
       }, handleError);
     }
 

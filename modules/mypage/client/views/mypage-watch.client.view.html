@@ -17,7 +17,7 @@
             <div class="mb-2">
               <button type="button" class="btn btn-default btn-circle mr-1" onfocus="this.blur();"
                       uib-tooltip="{{movie.isSeen ? 'Remove from seen movies': 'Add to seen movies'}}"
-                      tooltip-placement="right" ng-click="vm.updateSeenList(movie.id, movie.isSeen)"
+                      tooltip-placement="right" ng-click="vm.updateSeenMovies(movie.id, movie.isSeen)"
                       ng-class="{'btn-pressed': movie.isSeen,
                            'btn-unpressed': !movie.isSeen}">
                 <span class="glyphicon"
