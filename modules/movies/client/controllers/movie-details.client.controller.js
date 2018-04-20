@@ -5,10 +5,10 @@
     .module('movies')
     .controller('MovieDetailsController', MovieDetailsController);
 
-  MovieDetailsController.$inject = ['moviesService', 'movieResolve', 'userMovieInfoResolve', 'posterConfig',
-    'Authentication', '$anchorScroll', '$location'];
+  MovieDetailsController.$inject = ['moviesService', 'mypageService', 'movieResolve', 'userMovieInfoResolve',
+    'posterConfig', 'Authentication', '$anchorScroll', '$location'];
 
-  function MovieDetailsController(moviesService, movieResolve, userMovieInfoResolve, posterConfig,
+  function MovieDetailsController(moviesService, mypageService, movieResolve, userMovieInfoResolve, posterConfig,
                                   authentication, $anchorScroll, $location) {
     let vm = this;
     vm.postComment = postComment;
@@ -55,16 +55,16 @@
 
     function updateWatchlist() {
       const data = { tmdbId: vm.movie.id, delete: vm.userMovieInfo.isOnWatchlist };
-      moviesService.updateWatchlist(data).then(() => {
-        vm.userMovieInfo = { ...vm.userMovieInfo.isOnWatchlist = !vm.userMovieInfo.isOnWatchlist, ...vm.userMovieInfo };
+      mypageService.updateWatchlist(data).then(() => {
+        vm.userMovieInfo.isOnWatchlist = !vm.userMovieInfo.isOnWatchlist;
         updateTooltips();
       }, handleError);
     }
 
     function updateSeenList() {
       const data = { tmdbId: vm.movie.id, delete: vm.userMovieInfo.isOnSeenList };
-      moviesService.updateSeenList(data).then(() => {
-        vm.userMovieInfo = { ...vm.userMovieInfo.isOnSeenList = !vm.userMovieInfo.isOnSeenList, ...vm.userMovieInfo };
+      mypageService.updateSeenList(data).then(() => {
+        vm.userMovieInfo.isOnSeenList = !vm.userMovieInfo.isOnSeenList;
         updateTooltips();
       }, handleError);
     }

@@ -32,35 +32,13 @@
           data: comment
         });
       },
-      getUserMovieInfo: function (id) {
-        if (authentication.user) {
-          return $http({
-            method: 'GET',
-            url: `/api/mypage/${id}`
-          });
-        } else {
-          return new Promise(function (resolve) {
-            return resolve({
-              data: {
-                error: true,
-                msg: 'Not logged in'
-              }
-            });
-          });
+      getMovies: function (movies) {
+        if (movies.length === 0) {
+          return movies;
         }
-      },
-      updateSeenList: function (info) {
         return $http({
-          method: 'POST',
-          url: '/api/mypage/seen/update',
-          data: info
-        });
-      },
-      updateWatchlist: function (info) {
-        return $http({
-          method: 'POST',
-          url: '/api/mypage/watch/update',
-          data: info
+          method: 'GET',
+          url: `/api/movies/list/${JSON.stringify(movies)}`
         });
       }
     };

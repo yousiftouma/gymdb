@@ -35,14 +35,14 @@
   }
 
   getMovie.$inject = ['$stateParams', 'moviesService'];
-  getUserMovieInfo.$inject = ['$stateParams', 'moviesService'];
+  getUserMovieInfo.$inject = ['$stateParams', 'mypageService'];
 
   function getMovie($stateParams, movieService) {
     return movieService.getMovie($stateParams.id);
   }
 
-  function getUserMovieInfo($stateParams, movieService) {
+  function getUserMovieInfo($stateParams, mypageService) {
     // Gets info about the logged in user in relation to the movie
-    return movieService.getUserMovieInfo($stateParams.id);
+    return mypageService.getUserMovieInfo($stateParams.id);
   }
 }());

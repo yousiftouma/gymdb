@@ -5,9 +5,9 @@
     .module('mypage')
     .factory('mypageService', mypageService);
 
-  mypageService.$inject = ['$http'];
+  mypageService.$inject = ['$http', 'Authentication'];
 
-  function mypageService($http) {
+  function mypageService($http, authentication) {
     // Mypage service logic
     // ...
 
@@ -19,13 +19,35 @@
           url: '/api/mypage'
         });
       },
-      getMovies: function (movies) {
-        if (movies.length === 0) {
-          return movies;
+      getUserMovieInfo: function (id) {
+        if (authentication.user) {
+          return $http({
+            method: 'GET',
+            url: `/api/mypage/${id}`
+          });
+        } else {
+          return new Promise(function (resolve) {
+            return resolve({
+              data: {
+                error: true,
+                msg: 'Not logged in'
+              }
+            });
+          });
         }
+      },
+      updateSeenList: function (info) {
         return $http({
-          method: 'GET',
-          url: `/api/movies/list/${JSON.stringify(movies)}`
+          method: 'POST',
+          url: '/api/mypage/seen/update',
+          data: info
+        });
+      },
+      updateWatchlist: function (info) {
+        return $http({
+          method: 'POST',
+          url: '/api/mypage/watch/update',
+          data: info
         });
       }
     };
