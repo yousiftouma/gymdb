@@ -13,9 +13,20 @@
     // ...
     menuService.addMenuItem('topbar', {
       title: 'MY PAGE',
-      state: 'mypage.watch',
+      state: 'mypage',
       roles: ['user', 'admin'],
+      type: 'dropdown',
       position: 1
+    });
+
+    menuService.addSubMenuItem('topbar', 'mypage', {
+      title: 'Watchlist',
+      state: 'mypage.watch'
+    });
+
+    menuService.addSubMenuItem('topbar', 'mypage', {
+      title: 'Seen movies',
+      state: 'mypage.seen'
     });
   }
 })();

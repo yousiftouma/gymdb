@@ -17,7 +17,7 @@
         templateUrl: '/modules/mypage/client/views/mypage.client.view.html'
       })
       .state('mypage.watch', {
-        url: '',
+        url: '/watch',
         templateUrl: '/modules/mypage/client/views/mypage-watch.client.view.html',
         controller: 'MypageWatchController',
         controllerAs: 'vm',
@@ -30,7 +30,7 @@
         }
       })
       .state('mypage.seen', {
-        url: '',
+        url: '/seen',
         templateUrl: '/modules/mypage/client/views/mypage-seen.client.view.html',
         controller: 'MypageSeenController',
         controllerAs: 'vm',
