@@ -36,11 +36,16 @@
         controllerAs: 'vm',
         data: {
           roles: ['users', 'admin']
+        },
+        resolve: {
+          myPageResolve: getMyPage,
+          seenMoviesResolve: getSeenMovies
         }
       });
 
     getMyPage.$inject = ['$stateParams', 'mypageService'];
     getWatchlistMovies.$inject = ['$stateParams', 'moviesService', 'myPageResolve'];
+    getSeenMovies.$inject = ['$stateParams', 'moviesService', 'myPageResolve'];
 
     function getMyPage($stateParams, mypageService) {
       return mypageService.getMyPage();
@@ -49,16 +54,32 @@
     function getWatchlistMovies($stateParams, moviesService, myPageResolve) {
       let moviesToGet = myPageResolve.data.watchlist.slice(0, 10);
       return moviesService.getMovies(moviesToGet).then((result) => {
-        console.log(result);
         // Append information regarding whether the movie is seen by the user
-        let hej = result.data.map((movie) => {
+        if (!result.data) {
+          return { data: [] };
+        }
+        return result.data.map((movie) => {
           movie.isSeen = myPageResolve.data.seenMovies.filter((seenMovie) => {
             return movie.id === seenMovie.tmdbId;
           }).length > 0;
           return movie;
         });
-        console.log(hej);
-        return hej;
+      });
+    }
+
+    function getSeenMovies($stateParams, moviesService, myPageResolve) {
+      let moviesToGet = myPageResolve.data.seenMovies.slice(0, 10);
+      return moviesService.getMovies(moviesToGet).then((result) => {
+        // Append information regarding whether the movie is on users watchlist
+        if (!result.data) {
+          return { data: [] };
+        }
+        return result.data.map((movie) => {
+          movie.isOnWatchlist = myPageResolve.data.watchlist.filter((watchlistMovie) => {
+            return movie.id === watchlistMovie.tmdbId;
+          }).length > 0;
+          return movie;
+        });
       });
     }
   }
