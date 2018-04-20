@@ -1,8 +1,6 @@
 <div class="row">
 
-  <div ng-repeat="movie in [{vote_average: 3, overview: 'hi', title: 'hu', poster_path: null}]">
-    <div class="clearfix" ng-if="$index % 2 == 0"></div>
-
+  <div ng-repeat="movie in vm.movies">
     <div class="col-md-6 mt-2">
       <div class="media movie-container col-md-12 nopadding ">
         <div class="media-left">
