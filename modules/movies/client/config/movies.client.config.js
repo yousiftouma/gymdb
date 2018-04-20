@@ -21,9 +21,10 @@
   function menuConfig(menuService) {
     // Config logic
     menuService.addMenuItem('topbar', {
-      title: 'Browse movies',
+      title: 'BROWSE',
       state: 'movies.browse',
-      roles: ['*']
+      roles: ['*'],
+      position: 2
     });
     // ...
   }

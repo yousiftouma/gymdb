@@ -12,9 +12,10 @@
     // Config logic
     // ...
     menuService.addMenuItem('topbar', {
-      title: 'My page',
-      state: 'mypage',
-      roles: ['user', 'admin']
+      title: 'MY PAGE',
+      state: 'mypage.watch',
+      roles: ['user', 'admin'],
+      position: 1
     });
   }
 })();
