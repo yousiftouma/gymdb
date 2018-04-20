@@ -13,6 +13,24 @@
             <a ui-sref="movies.details({id: movie.id})">
               <h4 class="media-heading mb-2 mt-2">{{movie.title}}</h4>
             </a>
+
+            <div class="mb-2">
+              <button type="button" class="btn btn-default btn-circle mr-1" onfocus="this.blur();"
+                      uib-tooltip="{{movie.isSeen ? 'Remove from seen movies': 'Add to seen movies'}}"
+                      tooltip-placement="right" ng-click="vm.updateSeenList(movie.id, movie.isSeen)"
+                      ng-class="{'btn-pressed': movie.isSeen,
+                           'btn-unpressed': !movie.isSeen}">
+                <span class="glyphicon"
+                      ng-class="{'btn-icon-pressed glyphicon-minus': movie.isSeen,
+                           'btn-icon-unpressed glyphicon-plus': !movie.isSeen}"></span>
+              </button>
+              <button type="button" class="btn btn-default btn-circle btn-pressed" onfocus="this.blur();"
+                      uib-tooltip="Remove from watchlist" tooltip-placement="right"
+                      ng-click="vm.removeFromWatchlist(movie.id)">
+                <span class="glyphicon glyphicon-bookmark btn-icon-pressed"></span>
+              </button>
+            </div>
+
             <h5>Rating: {{movie.vote_average}}</h5>
           </div>
           <div>
