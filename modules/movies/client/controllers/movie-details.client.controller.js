@@ -21,17 +21,6 @@
     init();
 
     function init() {
-      updateTooltips();
-    }
-
-    function updateTooltips() {
-      if (!vm.user) {
-        vm.seenTooltip = 'You must be logged in to do this';
-        vm.watchTooltip = 'You must be logged in to do this';
-      } else {
-        vm.seenTooltip = vm.userMovieInfo.isOnSeenList ? 'Remove from seen movies' : 'Add to seen movies';
-        vm.watchTooltip = vm.userMovieInfo.isOnWatchlist ? 'Remove from watchlist' : 'Add to watchlist';
-      }
     }
 
     function handleError(response) {
@@ -49,23 +38,21 @@
     }
 
     function postComment() {
-      const data = { movie: vm.movie.id, content: vm.commentContent };
+      const data = {movie: vm.movie.id, content: vm.commentContent};
       moviesService.postComment(data).then(showComment, handleError);
     }
 
     function updateWatchlist() {
-      const data = { tmdbId: vm.movie.id, delete: vm.userMovieInfo.isOnWatchlist };
+      const data = {tmdbId: vm.movie.id, delete: vm.userMovieInfo.isOnWatchlist};
       mypageService.updateWatchlist(data).then(() => {
         vm.userMovieInfo.isOnWatchlist = !vm.userMovieInfo.isOnWatchlist;
-        updateTooltips();
       }, handleError);
     }
 
     function updateSeenList() {
-      const data = { tmdbId: vm.movie.id, delete: vm.userMovieInfo.isOnSeenList };
+      const data = {tmdbId: vm.movie.id, delete: vm.userMovieInfo.isOnSeenList};
       mypageService.updateSeenList(data).then(() => {
         vm.userMovieInfo.isOnSeenList = !vm.userMovieInfo.isOnSeenList;
-        updateTooltips();
       }, handleError);
     }
 

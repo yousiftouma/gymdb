@@ -15,7 +15,10 @@
 
       <div class="mb-2">
         <button type="button" class="btn btn-default btn-circle mr-1" onfocus="this.blur();"
-                uib-tooltip="{{vm.seenTooltip}}" tooltip-placement="left" require-auth="vm.updateSeenList()"
+                uib-tooltip="{{vm.user ? (vm.userMovieInfo.isOnSeenList ?
+                'Remove from seen movies' : 'Add to seen movies') :
+                 'You must be logged in to do this'}}"
+                tooltip-placement="bottom" require-auth="vm.updateSeenList()"
                 ng-class="{'btn-pressed': vm.userMovieInfo.isOnSeenList,
                            'btn-unpressed': !vm.userMovieInfo.isOnSeenList}">
           <span class="glyphicon"
@@ -23,7 +26,10 @@
                            'btn-icon-unpressed glyphicon-plus': !vm.userMovieInfo.isOnSeenList}"></span>
         </button>
         <button type="button" class="btn btn-default btn-circle" onfocus="this.blur();"
-                uib-tooltip="{{vm.watchTooltip}}" tooltip-placement="right" require-auth="vm.updateWatchlist()"
+                uib-tooltip="{{vm.user ? (vm.userMovieInfo.isOnWatchlist ?
+                'Remove from watchlist' : 'Add to watchlist') :
+                'You must be logged in to do this'}}"
+                tooltip-placement="right" require-auth="vm.updateWatchlist()"
                 ng-class="{'btn-pressed': vm.userMovieInfo.isOnWatchlist,
                            'btn-unpressed': !vm.userMovieInfo.isOnWatchlist}">
           <span class="glyphicon glyphicon-bookmark"
@@ -38,7 +44,9 @@
         </div>
       </div>
 
-      <p><div ng-class="{'invisible': vm.movie.tagline == ''}" class="tagline">"{{vm.movie.tagline}}"</div></p>
+      <p>
+      <div ng-class="{'invisible': vm.movie.tagline == ''}" class="tagline">"{{vm.movie.tagline}}"</div>
+      </p>
       <p ng-bind="vm.movie.overview"></p>
 
     </div>
