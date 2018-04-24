@@ -13,7 +13,6 @@
     let vm = this;
     vm.currentPage = 1;
     vm.previousPage = previousPage;
-    vm.finalPage = false;
     vm.nextPage = nextPage;
     vm.watchlistLength = myPageResolve.data.watchlist.length;
     vm.movies = watchlistResolve;
@@ -26,6 +25,7 @@
     init();
 
     function init() {
+      vm.finalPage = vm.watchlistLength <= 10;
     }
 
     function removeFromWatchlist(movieId) {
