@@ -25,7 +25,7 @@
     });
 
     menuService.addSubMenuItem('topbar', 'mypage', {
-      title: 'Seen movies',
+      title: 'Seen Movies',
       state: 'mypage.seen'
     });
   }
