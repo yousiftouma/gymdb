@@ -1,4 +1,5 @@
-<div ng-hide="vm.movies.length">No movies seen by you.</div>
+<h4 ng-hide="vm.movies.length">No movies seen by you.</h4>
+<h4 ng-hide="!vm.movies.length">You have seen {{vm.seenMoviesLength}} movies.</h4>
 <div ng-hide="!vm.movies.length" class="row">
 
   <div ng-repeat="movie in vm.movies">
