@@ -25,8 +25,8 @@ module.exports = {
     title: defaultEnvConfig.app.title + ' - Development Environment'
   },
   facebook: {
-    clientID: process.env.FACEBOOK_ID || 'APP_ID',
-    clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+    clientID: process.env.FACEBOOK_ID || '770944193111770',
+    clientSecret: process.env.FACEBOOK_SECRET || 'd56a66d53874ba46c79c6904311404e9',
     callbackURL: '/api/auth/facebook/callback'
   },
   twitter: {
