@@ -9,8 +9,6 @@
 
   function MypageWatchController($scope, myPageResolve, watchlistResolve, posterConfig, mypageService) {
     let vm = this;
-    console.log('in watch');
-
     vm.movies = watchlistResolve;
     vm.baseImagePath = posterConfig.imageBaseUrl + posterConfig.posterSizes.xl;
     vm.removeFromWatchlist = removeFromWatchlist;

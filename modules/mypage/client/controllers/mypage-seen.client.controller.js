@@ -9,7 +9,6 @@
 
   function MypageSeenController($scope, myPageResolve, seenMoviesResolve, posterConfig, mypageService) {
     let vm = this;
-    console.log('in seen');
     vm.movies = seenMoviesResolve;
     vm.baseImagePath = posterConfig.imageBaseUrl + posterConfig.posterSizes.xl;
     vm.removeFromSeenMovies = removeFromSeenMovies;
