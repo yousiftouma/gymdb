@@ -1,4 +1,5 @@
-<div ng-hide="vm.movies.length">No movies on your watchlist.</div>
+<h4 ng-hide="vm.movies.length">No movies on your watchlist.</h4>
+<h4 ng-hide="!vm.movies.length"> You have {{vm.moviesOnWatchlist}} movies on your watchlist</h4>
 <div ng-hide="!vm.movies.length" class="row">
 
   <div ng-repeat="movie in vm.movies">
@@ -42,3 +43,17 @@
     </div>
   </div>
 </div>
+  <nav ng-hide="!vm.movies.length" aria-label="Page navigation">
+    <ul class="pager">
+      <li>
+        <a ng-hide="vm.currentPage == 1" href="" aria-label="Previous" aria-hidden="true"
+           ng-click="vm.previousPage()">Previous</a>
+      </li>
+      <li>
+        <a ng-hide="vm.finalPage" href="" aria-label="Next"
+           aria-hidden="true" ng-click="vm.nextPage()">Next</a>
+      </li>
+    </ul>
+  </nav>
+
+
