@@ -15,7 +15,7 @@
     vm.previousPage = previousPage;
     vm.finalPage = false;
     vm.nextPage = nextPage;
-    vm.moviesOnWatchlist = myPageResolve.data.watchlist.length;
+    vm.watchlistLength = myPageResolve.data.watchlist.length;
     vm.movies = watchlistResolve;
     vm.baseImagePath = posterConfig.imageBaseUrl + posterConfig.posterSizes.xl;
     vm.removeFromWatchlist = removeFromWatchlist;

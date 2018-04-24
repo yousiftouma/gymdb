@@ -1,5 +1,5 @@
 <h4 ng-hide="vm.movies.length">No movies on your watchlist.</h4>
-<h4 ng-hide="!vm.movies.length"> You have {{vm.moviesOnWatchlist}} movies on your watchlist</h4>
+<h4 ng-hide="!vm.movies.length">You have {{vm.watchlistLength}} movies on your watchlist.</h4>
 <div ng-hide="!vm.movies.length" class="row">
 
   <div ng-repeat="movie in vm.movies">
