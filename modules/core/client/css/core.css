@@ -42,3 +42,41 @@ a:hover .header-profile-image {
 .has-error .help-inline.error-text {
   display: inline;
 }
+
+.home-jmb-background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: url("/modules/core/client/img/brand/movie-posters.jpg");
+	background-position: 0% 25%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	-webkit-filter: blur(2px);
+	-moz-filter: blur(2px);
+	-o-filter: blur(2px);
+	-ms-filter: blur(2px);
+	filter: blur(2px);
+	z-index: -1;
+
+}
+
+.home-jmb {
+	margin-bottom: 0;
+
+	position: relative;
+	background: none;
+	color: #fffefc;
+	text-shadow: 2px 2px 5px #555252;
+	font-size: 17vw;
+	z-index: 1;
+	min-height: 400px;
+}
+
+.home-jmb-text {
+
+}
+
+
+
