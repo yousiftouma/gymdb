@@ -35,7 +35,7 @@
       getMovies: function (movies) {
         if (movies.length === 0) {
           return new Promise(function (resolve) {
-            return resolve(movies);
+            return resolve({ data: movies });
           });
         }
         return $http({

@@ -56,7 +56,7 @@
       return moviesService.getMovies(moviesToGet).then((result) => {
         // Append information regarding whether the movie is seen by the user
         if (!result.data) {
-          return { data: [] };
+          return [];
         }
         return result.data.map((movie) => {
           movie.isSeen = myPageResolve.data.seenMovies.filter((seenMovie) => {
@@ -72,7 +72,7 @@
       return moviesService.getMovies(moviesToGet).then((result) => {
         // Append information regarding whether the movie is on users watchlist
         if (!result.data) {
-          return { data: [] };
+          return [];
         }
         return result.data.map((movie) => {
           movie.isOnWatchlist = myPageResolve.data.watchlist.filter((watchlistMovie) => {
