@@ -1,1 +1,1 @@
-web: gulp build prod
+web: npm run start:prod
