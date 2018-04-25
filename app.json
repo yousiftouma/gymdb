@@ -1,8 +1,8 @@
 {
-  "name": "meanjs",
-  "description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
+  "name": "GYmdb",
+  "description": "Your ultimate movie database",
   "repository": "https://github.com/meanjs/mean",
-  "logo": "http://meanjs.org/img/logo-small.png",
+  "logo": "/config/assets/img/logo/gymdb-logo.png",
   "keywords": [
     "mongodb",
     "express",
