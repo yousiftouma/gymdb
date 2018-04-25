@@ -22,7 +22,7 @@
         controller: 'MypageWatchController',
         controllerAs: 'vm',
         data: {
-          roles: ['users', 'admin']
+          roles: ['user']
         },
         resolve: {
           myPageResolve: getMyPage,
@@ -35,7 +35,7 @@
         controller: 'MypageSeenController',
         controllerAs: 'vm',
         data: {
-          roles: ['users', 'admin']
+          roles: ['user']
         },
         resolve: {
           myPageResolve: getMyPage,

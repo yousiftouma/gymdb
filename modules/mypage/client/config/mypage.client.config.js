@@ -14,7 +14,7 @@
     menuService.addMenuItem('topbar', {
       title: 'MY PAGE',
       state: 'mypage',
-      roles: ['user', 'admin'],
+      roles: ['user'],
       type: 'dropdown',
       position: 1
     });
