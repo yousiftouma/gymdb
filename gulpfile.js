@@ -17,6 +17,9 @@ var _ = require('lodash'),
       'gulp-angular-templatecache': 'templateCache'
     }
   }),
+  uglifyjs = require('uglify-es'),
+  composer = require('gulp-uglify/composer'),
+  pump = require('pump'),
   pngquant = require('imagemin-pngquant'),
   wiredep = require('wiredep').stream,
   path = require('path'),
@@ -26,6 +29,7 @@ var _ = require('lodash'),
 
 // Local settings
 var changedTestFiles = [];
+var minify = composer(uglifyjs, console);
 
 // Set NODE_ENV to 'test'
 gulp.task('env:test', function () {
@@ -147,7 +151,7 @@ gulp.task('uglify', function () {
 
   return gulp.src(assets)
     .pipe(plugins.ngAnnotate())
-    .pipe(plugins.uglify({
+    .pipe(plugins.uglifyjs({
       mangle: true
     }).on('error', function (err) {
       console.log('Uglify error : ', err.toString());
@@ -155,6 +159,28 @@ gulp.task('uglify', function () {
     .pipe(plugins.concat('application.min.js'))
     .pipe(plugins.rev())
     .pipe(gulp.dest('public/dist'));
+});
+
+gulp.task('compress', function (cb) {
+  // the same options as described above
+  var options = {};
+
+  var assets = _.union(
+    defaultAssets.client.js,
+    defaultAssets.client.templates
+  );
+  del(['public/dist/*']);
+
+  pump([
+    gulp.src(assets),
+    plugins.ngAnnotate(),
+    minify(options),
+    plugins.concat('application.min.js'),
+    plugins.rev(),
+    gulp.dest('public/dist')
+  ],
+    cb
+  );
 });
 
 // CSS minifying task
@@ -451,7 +477,7 @@ gulp.task('lint', function (done) {
 
 // Lint project files and minify them into two production files.
 gulp.task('build', function (done) {
-  runSequence('env:dev', 'wiredep:prod', 'lint', ['uglify', 'cssmin'], done);
+  runSequence('env:dev', 'wiredep:prod', 'lint', ['compress', 'cssmin'], done);
 });
 
 // Run the project tests

@@ -24,6 +24,8 @@ module.exports = {
         'public/lib/angular-ui-router/release/angular-ui-router.min.js',
         'public/lib/ng-file-upload/ng-file-upload.min.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
+        'public/lib/firebase/firebase.js',
+        'public/lib/angularfire/dist/angularfire.min.js',
         // endbower
       ]
     },
