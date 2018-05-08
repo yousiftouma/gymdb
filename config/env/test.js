@@ -83,15 +83,6 @@ module.exports = {
           roles: ['user']
         }
       }]
-    }, {
-      model: 'Article',
-      docs: [{
-        overwrite: true,
-        data: {
-          title: 'Test Article',
-          content: 'Code coverage test article!'
-        }
-      }]
     }]
   }
 };
