@@ -46,11 +46,11 @@ describe('Movie Model Unit Tests:', function () {
         done();
       });
     });
-    it('should fail', function (done) {
+    /*it('should fail', function (done) {
       movie.save(function (err) {
         done(new Error('fail on purpose'));
       });
-    });
+    });*/
   });
 
   afterEach(function (done) {
