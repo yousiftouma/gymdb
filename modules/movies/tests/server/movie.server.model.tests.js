@@ -17,8 +17,8 @@ var user,
 /**
  * Unit tests
  */
-describe('Movie Model Unit Tests:', function() {
-  beforeEach(function(done) {
+describe('Movie Model Unit Tests:', function () {
+  beforeEach(function (done) {
     user = new User({
       firstName: 'Full',
       lastName: 'Name',
@@ -28,7 +28,7 @@ describe('Movie Model Unit Tests:', function() {
       password: 'password'
     });
 
-    user.save(function() {
+    user.save(function () {
       movie = new Movie({
         // Add model fields
         // ...
@@ -39,16 +39,21 @@ describe('Movie Model Unit Tests:', function() {
     });
   });
 
-  describe('Method Save', function() {
-    it('should be able to save without problems', function(done) {
-      movie.save(function(err) {
+  describe('Method Save', function () {
+    it('should be able to save without problems', function (done) {
+      movie.save(function (err) {
         should.not.exist(err);
         done();
       });
     });
+    it('should fail', function (done) {
+      movie.save(function (err) {
+        done(new Error('fail on purpose'));
+      });
+    });
   });
 
-  afterEach(function(done) {
+  afterEach(function (done) {
     Movie.remove().exec();
     User.remove().exec();
 
