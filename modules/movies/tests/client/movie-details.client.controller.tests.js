@@ -1,8 +1,8 @@
 'use strict';
 
-(function() {
+(function () {
   // Movie details Controller Spec
-  describe('Movie details Controller Tests', function() {
+  describe('Movie details Controller Tests', function () {
     // Initialize global variables
     var MovieDetailsController,
       $scope,
@@ -17,9 +17,9 @@
     // account and ignores methods.
     beforeEach(function () {
       jasmine.addMatchers({
-        toEqualData: function(util, customEqualityTesters) {
+        toEqualData: function (util, customEqualityTesters) {
           return {
-            compare: function(actual, expected) {
+            compare: function (actual, expected) {
               return {
                 pass: angular.equals(actual, expected)
               };
@@ -35,7 +35,7 @@
     // The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
     // This allows us to inject a service but then attach it to a variable
     // with the same name as the service.
-    beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_) {
+    beforeEach(inject(function ($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_) {
       // Set a new global scope
       $scope = $rootScope.$new();
 
@@ -44,9 +44,12 @@
       $httpBackend = _$httpBackend_;
       $location = _$location_;
 
+
       // Initialize the Movie details controller.
       MovieDetailsController = $controller('MovieDetailsController', {
-        $scope: $scope
+        $scope: $scope,
+        movieResolve: {},
+        userMovieInfoResolve: {}
       });
     }));
 

@@ -32,15 +32,16 @@ describe('Movie Model Unit Tests:', function() {
       movie = new Movie({
         // Add model fields
         // ...
+        comments: [],
+        tmdbId: 1
       });
-
       done();
     });
   });
 
   describe('Method Save', function() {
     it('should be able to save without problems', function(done) {
-      return movie.save(function(err) {
+      movie.save(function(err) {
         should.not.exist(err);
         done();
       });
