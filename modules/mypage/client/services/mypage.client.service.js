@@ -27,12 +27,8 @@
           });
         } else {
           return new Promise(function (resolve) {
-            return resolve({
-              data: {
-                error: true,
-                msg: 'Not logged in'
-              }
-            });
+            // We resolve instantly since there is no further info to fetch
+            resolve({});
           });
         }
       },

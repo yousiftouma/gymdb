@@ -6,10 +6,10 @@
     .controller('MypageSeenController', MypageSeenController);
 
   MypageSeenController.$inject = ['$scope', 'myPageResolve', 'seenMoviesResolve', 'posterConfig', 'mypageService',
-    'moviesService', '$anchorScroll', 'Authentication'];
+    'moviesService', '$anchorScroll', 'Authentication', 'Notification'];
 
   function MypageSeenController($scope, myPageResolve, seenMoviesResolve, posterConfig, mypageService, moviesService,
-                                $anchorScroll, Authentication) {
+                                $anchorScroll, Authentication, Notification) {
     let vm = this;
     vm.currentPage = 1;
     vm.previousPage = previousPage;
@@ -54,6 +54,11 @@
     function handleError(error) {
       console.log('Logging error');
       console.log(error);
+      Notification.error({
+        title: "Something went wrong!",
+        message: error,
+        delay: 5000
+      });
     }
 
 
@@ -65,7 +70,7 @@
         vm.movies = result;
         vm.finalPage = false;
         $anchorScroll();
-      });
+      }, handleError);
     }
 
     function nextPage() {
@@ -78,7 +83,7 @@
           vm.finalPage = true;
         }
         $anchorScroll();
-      });
+      }, handleError);
     }
 
     function getSeenMovies(moviesToGet) {
@@ -93,7 +98,7 @@
           }).length > 0;
           return movie;
         });
-      });
+      }, handleError);
     }
 
     function postTweet() {
@@ -113,7 +118,19 @@
       }
       data.status = listString;
       mypageService.sendTweet(data).then((result) => {
-        console.log(result);
+        if (result.data.errors) {
+          let error = result.data.errors[0];
+          Notification.error({
+            title: "Failed tweeting your list!",
+            message: `Error Code: ${error.code}, Message: ${error.message}`,
+            delay: 5000
+          });
+        } else {
+          Notification.success({
+            title: "Tweet posted successfully!",
+            delay: 5000
+          });
+        }
       });
     }
   }

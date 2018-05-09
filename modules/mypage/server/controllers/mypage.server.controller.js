@@ -40,6 +40,11 @@ const createMyPage = function (userId, res) {
 exports.getOrCreate = function (req, res) {
   let doc = null;
   Mypage.find({ user: req.user._id }, function (error, mypage) {
+    if (error) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(error)
+      });
+    }
     if (mypage === undefined || mypage.length === 0) {
       doc = createMyPage(req.user._id, res);
     } else {
@@ -59,6 +64,11 @@ exports.getOrCreate = function (req, res) {
 exports.getByTmdbId = function (req, res) {
   let result = {};
   Mypage.find({ user: req.user._id }, function (error, mypage) {
+    if (error) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(error)
+      });
+    }
     if (mypage === undefined || mypage.length === 0) {
       // doesnt exist
       result.isOnSeenMovies = false;
@@ -81,6 +91,11 @@ exports.updateSeenMovies = function (req, res) {
   let doc = null;
   console.log(req);
   Mypage.find({ user: req.user._id }, function (error, mypage) {
+    if (error) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(error)
+      });
+    }
     if (mypage === undefined || mypage.length === 0) {
       doc = createMyPage(req.user._id, res);
     } else {
@@ -123,6 +138,11 @@ exports.updateSeenMovies = function (req, res) {
 exports.updateWatchlist = function (req, res) {
   let doc = null;
   Mypage.find({ user: req.user._id }, function (error, mypage) {
+    if (error) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(error)
+      });
+    }
     if (mypage === undefined || mypage.length === 0) {
       doc = createMyPage(req.user._id, res);
     } else {
@@ -209,7 +229,7 @@ function getUserInfo(user) {
       token: user.providerData.token,
       tokenSecret: user.providerData.tokenSecret
     };
-  } else if (user.additionalProvidersData.twitter) {
+  } else if (user.additionalProvidersData && user.additionalProvidersData.twitter) {
     // Twitter is linked to user account
     return {
       token: user.additionalProvidersData.twitter.token,

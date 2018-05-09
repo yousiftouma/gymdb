@@ -34,8 +34,14 @@
       vm.searchComplete = true;
     }
 
-    function handleError(response) {
-      console.log(response);
+    function handleError(error) {
+      console.log('logging error');
+      console.log(error);
+      Notification.error({
+        title: "Something went wrong!",
+        message: error,
+        delay: 5000
+      });
     }
 
     function nextPage() {

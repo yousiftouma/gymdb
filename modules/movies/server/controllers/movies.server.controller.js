@@ -18,6 +18,11 @@ let config = require(path.resolve('./config/config'));
 exports.createOrUpdate = function (req, res) {
   let doc = null;
   Movie.find({ tmdbId: req.body.movie }, function (error, movie) {
+    if (error) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(error)
+      });
+    }
     if (movie === undefined || movie.length === 0) {
       // Create a new movie document and persist in storage
       console.log(req.user);
@@ -69,6 +74,11 @@ exports.read = function (req, res) {
   };
   networkModule.getJson(options, function (statusCode, jsonObject) {
     Movie.find({ tmdbId: req.params.id }, function (error, movie) {
+      if (error) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(error)
+        });
+      }
       let comments = null;
       if (movie === undefined || movie.length === 0) {
         comments = [];
@@ -113,6 +123,9 @@ exports.getByIds = function (req, res) {
   });
 };
 
+/**
+ * Search the tmdb movie database for movies using a query
+ */
 exports.search = function (req, res) {
   let options = {
     host: config.movieDbInfo.baseUrl,

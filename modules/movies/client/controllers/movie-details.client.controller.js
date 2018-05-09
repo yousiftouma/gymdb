@@ -23,9 +23,14 @@
     function init() {
     }
 
-    function handleError(response) {
+    function handleError(error) {
       console.log('error');
-      console.log(response);
+      console.log(error);
+      Notification.error({
+        title: "Something went wrong!",
+        message: error,
+        delay: 5000
+      });
     }
 
     function showComment(response) {
