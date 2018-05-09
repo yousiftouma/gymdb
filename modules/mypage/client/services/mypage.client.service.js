@@ -49,6 +49,13 @@
           url: '/api/mypage/watch/update',
           data: info
         });
+      },
+      sendTweet: function (info) {
+        return $http({
+          method: 'POST',
+          url: '/api/mypage/tweet',
+          data: info
+        });
       }
     };
   }
