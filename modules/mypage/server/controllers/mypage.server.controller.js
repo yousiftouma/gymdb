@@ -8,7 +8,7 @@ let path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   Mypage = mongoose.model('Mypage'),
   _ = require('lodash'),
-  CryptoJS = require("crypto-js"),
+  CryptoJS = require('crypto-js'),
   moment = require('moment');
 
 let networkModule = require('../../../../config/lib/network');
@@ -181,8 +181,8 @@ exports.tweet = function (req, res) {
     path: `${tweetPath}?include_entities=${encodeURIComponent(includeEntities)}&status=${encodeURIComponent(status)}`,
     method: method,
     headers: {
-      "Authorization": oauthHeader,
-      "Content-Type": 'application/x-www-form-urlencoded'
+      'Authorization': oauthHeader,
+      'Content-Type': 'application/x-www-form-urlencoded'
     }
   };
   networkModule.getJson(options, function (statusCode, jsonObject) {
@@ -198,7 +198,7 @@ function createOauthSignature(token, consumerKey, nonce, signMethod, timestamp, 
   const message = `${method}&${encodeURIComponent(baseUrl)}&${encodeURIComponent(parameters)}`;
 
   const key = `${encodeURIComponent(consumerSecret)}&${encodeURIComponent(tokenSecret)}`;
-  const hash = CryptoJS.HmacSHA1(message, key);
+  const hash = new CryptoJS.HmacSHA1(message, key);
   return CryptoJS.enc.Base64.stringify(hash);
 }
 
@@ -209,8 +209,7 @@ function getUserInfo(user) {
       token: user.providerData.token,
       tokenSecret: user.providerData.tokenSecret
     };
-  }
-  else if (user.additionalProvidersData.twitter) {
+  } else if (user.additionalProvidersData.twitter) {
     // Twitter is linked to user account
     return {
       token: user.additionalProvidersData.twitter.token,

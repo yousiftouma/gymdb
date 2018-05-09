@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -8,7 +8,7 @@
   MypageController.$inject = ['$scope'];
 
   function MypageController($scope) {
-    var vm = this;
+    let vm = this;
 
     // Mypage controller logic
     // ...
@@ -18,4 +18,4 @@
     function init() {
     }
   }
-})();
+}());

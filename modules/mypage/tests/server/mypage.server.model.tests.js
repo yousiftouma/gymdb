@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-var should = require('should'),
+let should = require('should'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
   Mypage = mongoose.model('Mypage');
@@ -11,14 +11,14 @@ var should = require('should'),
 /**
  * Globals
  */
-var user,
+let user,
   mypage;
 
 /**
  * Unit tests
  */
-describe('Mypage Model Unit Tests:', function() {
-  beforeEach(function(done) {
+describe('Mypage Model Unit Tests:', function () {
+  beforeEach(function (done) {
     user = new User({
       firstName: 'Full',
       lastName: 'Name',
@@ -28,7 +28,7 @@ describe('Mypage Model Unit Tests:', function() {
       password: 'password'
     });
 
-    user.save(function() {
+    user.save(function () {
       mypage = new Mypage({
         // Add model fields
         // ...
@@ -41,16 +41,16 @@ describe('Mypage Model Unit Tests:', function() {
     });
   });
 
-  describe('Method Save', function() {
-    it('should be able to save without problems', function(done) {
-      mypage.save(function(err) {
+  describe('Method Save', function () {
+    it('should be able to save without problems', function (done) {
+      mypage.save(function (err) {
         should.not.exist(err);
         done();
       });
     });
   });
 
-  afterEach(function(done) {
+  afterEach(function (done) {
     Mypage.remove().exec();
     User.remove().exec();
 

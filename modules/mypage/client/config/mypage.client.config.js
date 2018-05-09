@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   // Mypage module config
@@ -29,4 +29,4 @@
       state: 'mypage.seen'
     });
   }
-})();
+}());

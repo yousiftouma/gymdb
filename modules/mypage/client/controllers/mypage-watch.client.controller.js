@@ -97,20 +97,19 @@
 
     function postTweet() {
       let data = {};
-      let listString = "This is my watchlist from GYmdb:";
+      let listString = 'This is my watchlist from GYmdb:';
       for (let i = 0; i < vm.movies.length; i++) {
         let movie = vm.movies[i];
-        if (listString.length + movie.title.length < 135){
+        if (listString.length + movie.title.length < 135) {
           listString = `${listString}\n${movie.title}`;
-        }
-        else {
+        } else {
           break;
         }
       }
       data.status = listString;
       mypageService.sendTweet(data).then((result) => {
         console.log(result);
-      })
+      });
     }
   }
 }());

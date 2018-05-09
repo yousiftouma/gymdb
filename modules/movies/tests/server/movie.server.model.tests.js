@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-var should = require('should'),
+let should = require('should'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
   Movie = mongoose.model('Movie');
@@ -11,7 +11,7 @@ var should = require('should'),
 /**
  * Globals
  */
-var user,
+let user,
   movie;
 
 /**
@@ -46,7 +46,7 @@ describe('Movie Model Unit Tests:', function () {
         done();
       });
     });
-    /*it('should fail', function (done) {
+    /* it('should fail', function (done) {
       movie.save(function (err) {
         done(new Error('fail on purpose'));
       });

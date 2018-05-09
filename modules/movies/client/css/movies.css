@@ -1,10 +1,10 @@
 body {
+	background: #F4F4F4;
+	height: 100%;
 	margin:0;
+	min-height: 100%;
 	padding:0;
 	width:100%;
-	height: 100%;
-	min-height: 100%;
-	background: #F4F4F4;
 }
 
 .mt-1 {
@@ -34,10 +34,12 @@ body {
 }
 
 .movie-description-length {
-	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-moz-box-orient: vertical;
+	-ms-box-orient: vertical;
 	display: -webkit-box;
 	-webkit-line-clamp: 9;
-	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 
 .movie-container {
@@ -46,8 +48,8 @@ body {
 }
 
 .nopadding {
-	padding: 0 !important;
 	margin: 0 !important;
+	padding: 0 !important;
 }
 
 .poster-size {
@@ -59,8 +61,8 @@ body {
 	display: inline-block;
 }
 .movie-year {
-	font-size: x-large;
 	color: #646464;
+	font-size: x-large;
 }
 
 .progress-width {
@@ -68,21 +70,20 @@ body {
 }
 
 .tagline {
+	color: #888888;
 	font-size: medium;
 	font-style: italic;
-	color: #888888;
-
 }
 
 .btn-circle{
-	width: 40px;
-	height: 40px;
-	font-size: medium;
-	padding: 4px;
-	border-radius: 25px;
-	border: solid;
-	border-width: thin;
 	background: transparent;
+	border: solid;
+	border-radius: 25px;
+	border-width: thin;
+	font-size: medium;
+	height: 40px;
+	padding: 4px;
+	width: 40px;
 }
 
 .btn-icon-unpressed {
@@ -99,7 +100,7 @@ body {
 }
 
 .btn-pressed {
-	border-color: #7ab7e0;
 	background: #e0e0e0;
+	border-color: #7ab7e0;
 	box-shadow: 2px 1px 2px lightgrey;
 }
