@@ -13,4 +13,6 @@ module.exports = function (app) {
     .post(mypageController.updateSeenMovies);
   app.route('/api/mypage/watch/update')
     .post(mypageController.updateWatchlist);
+  app.route('/api/mypage/tweet')
+    .post(mypageController.tweet);
 };

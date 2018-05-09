@@ -33,7 +33,8 @@ module.exports = {
     username: '@TWITTER_USERNAME',
     clientID: process.env.TWITTER_KEY || 'v2XzODhJDz6HHSX7bBCSIPI8F',
     clientSecret: process.env.TWITTER_SECRET || 'm7VtBWelqJGsQQyJHO8caokafhbwwomvYmSVLBcWou40XfD6XE',
-    callbackURL: '/api/auth/twitter/callback'
+    callbackURL: '/api/auth/twitter/callback',
+    baseUrl: 'api.twitter.com'
   },
   mailer: {
     from: process.env.MAILER_FROM || 'MAILER_FROM',

@@ -7,7 +7,13 @@ let path = require('path'),
   mongoose = require('mongoose'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   Mypage = mongoose.model('Mypage'),
-  _ = require('lodash');
+  _ = require('lodash'),
+  CryptoJS = require("crypto-js"),
+  moment = require('moment');
+
+let networkModule = require('../../../../config/lib/network');
+let utils = require('../../../../config/lib/utils');
+let config = require(path.resolve('./config/config'));
 
 const createMyPage = function (userId, res) {
   // Create a new Mypage document and persist in storage
@@ -147,16 +153,68 @@ exports.updateWatchlist = function (req, res) {
 };
 
 /**
- * Delete an Mypage
+ * Posts a tweet
  */
-exports.delete = function (req, res) {
+exports.tweet = function (req, res) {
+  let userInfo = getUserInfo(req.user);
+  let token = userInfo.token;
+  let consumerKey = config.twitter.clientID;
+  let consumerSecret = config.twitter.clientSecret;
+  let tokenSecret = userInfo.tokenSecret;
+  let nonce = utils.generateNonce();
+  let signMethod = 'HMAC-SHA1';
+  let timestamp = moment().unix();
+  let version = '1.0';
+  let method = 'POST';
+  let includeEntities = 'true';
+  let status = req.body.status;
+  let tweetPath = '/1.1/statuses/update.json';
+  let baseUrl = 'https://' + config.twitter.baseUrl + tweetPath;
 
+  let signature = createOauthSignature(token, consumerKey, nonce, signMethod, timestamp, version, method,
+    includeEntities, status, tweetPath, baseUrl, consumerSecret, tokenSecret);
+
+  const oauthHeader = `OAuth oauth_consumer_key="${encodeURIComponent(consumerKey)}", oauth_nonce="${encodeURIComponent(nonce)}", oauth_signature="${encodeURIComponent(signature)}", oauth_signature_method="${encodeURIComponent(signMethod)}", oauth_timestamp="${encodeURIComponent(timestamp)}", oauth_token="${encodeURIComponent(token)}", oauth_version="${encodeURIComponent(version)}"`;
+
+  let options = {
+    host: config.twitter.baseUrl,
+    path: `${tweetPath}?include_entities=${encodeURIComponent(includeEntities)}&status=${encodeURIComponent(status)}`,
+    method: method,
+    headers: {
+      "Authorization": oauthHeader,
+      "Content-Type": 'application/x-www-form-urlencoded'
+    }
+  };
+  networkModule.getJson(options, function (statusCode, jsonObject) {
+    console.log(jsonObject);
+    res.json(jsonObject);
+  });
 };
 
-/**
- * List of Mypages
- */
-exports.list = function (req, res) {
+function createOauthSignature(token, consumerKey, nonce, signMethod, timestamp, version, method, includeEntities,
+                              status, tweetPath, baseUrl, consumerSecret, tokenSecret) {
+  const parameters = `${encodeURIComponent('include_entities')}=${encodeURIComponent(includeEntities)}&${encodeURIComponent('oauth_consumer_key')}=${encodeURIComponent(consumerKey)}&${encodeURIComponent('oauth_nonce')}=${encodeURIComponent(nonce)}&${encodeURIComponent('oauth_signature_method')}=${encodeURIComponent(signMethod)}&${encodeURIComponent('oauth_timestamp')}=${encodeURIComponent(timestamp)}&${encodeURIComponent('oauth_token')}=${encodeURIComponent(token)}&${encodeURIComponent('oauth_version')}=${encodeURIComponent(version)}&${encodeURIComponent('status')}=${encodeURIComponent(status)}`;
 
-};
+  const message = `${method}&${encodeURIComponent(baseUrl)}&${encodeURIComponent(parameters)}`;
 
+  const key = `${encodeURIComponent(consumerSecret)}&${encodeURIComponent(tokenSecret)}`;
+  const hash = CryptoJS.HmacSHA1(message, key);
+  return CryptoJS.enc.Base64.stringify(hash);
+}
+
+function getUserInfo(user) {
+  if (user.provider === 'twitter') {
+    // User is signed up with twitter
+    return {
+      token: user.providerData.token,
+      tokenSecret: user.providerData.tokenSecret
+    };
+  }
+  else if (user.additionalProvidersData.twitter) {
+    // Twitter is linked to user account
+    return {
+      token: user.additionalProvidersData.twitter.token,
+      tokenSecret: user.additionalProvidersData.twitter.tokenSecret
+    };
+  }
+}
