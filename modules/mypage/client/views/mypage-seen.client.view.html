@@ -1,5 +1,13 @@
-<h4 ng-hide="vm.movies.length">No movies seen by you.</h4>
-<h4 ng-hide="!vm.movies.length">You have seen {{vm.seenMoviesLength}} movies.</h4>
+<div class="vertical-align-container">
+  <h4 class="align-left" ng-hide="vm.movies.length">No movies seen by you.</h4>
+  <h4 class="align-left" ng-hide="!vm.movies.length">You have seen {{vm.seenMoviesLength}} movies.</h4>
+  <button class="align-right btn btn-twitter btn-sm mt-1" ng-hide="!vm.movies.length" onfocus="this.blur()"
+          ng-click="vm.postTweet()"
+          uib-tooltip="{{(vm.user.provider === 'twitter' || vm.user.additionalProvidersData.twitter) ?
+          'Tweet' : 'You need to link your twitter account to post tweets'}}">Tweet Your List</button>
+  <div style="clear: both;"></div>
+</div>
+
 <div ng-hide="!vm.movies.length" class="row">
 
   <div ng-repeat="movie in vm.movies">

@@ -6,19 +6,21 @@
     .controller('MypageSeenController', MypageSeenController);
 
   MypageSeenController.$inject = ['$scope', 'myPageResolve', 'seenMoviesResolve', 'posterConfig', 'mypageService',
-    'moviesService', '$anchorScroll'];
+    'moviesService', '$anchorScroll', 'Authentication'];
 
   function MypageSeenController($scope, myPageResolve, seenMoviesResolve, posterConfig, mypageService, moviesService,
-                                $anchorScroll) {
+                                $anchorScroll, Authentication) {
     let vm = this;
     vm.currentPage = 1;
     vm.previousPage = previousPage;
     vm.nextPage = nextPage;
+    vm.user = Authentication.user;
     vm.movies = seenMoviesResolve;
     vm.seenMoviesLength = myPageResolve.data.seenMovies.length;
     vm.baseImagePath = posterConfig.imageBaseUrl + posterConfig.posterSizes.xl;
     vm.removeFromSeenMovies = removeFromSeenMovies;
     vm.updateWatchlist = updateWatchlist;
+    vm.postTweet = postTweet;
     // Mypage controller logic
     // ...
 
@@ -92,6 +94,24 @@
           return movie;
         });
       });
+    }
+
+    function postTweet() {
+      let data = {};
+      let listString = "This is my seen movies from GYmdb:";
+      for (let i = 0; i < vm.movies.length; i++) {
+        let movie = vm.movies[i];
+        if (listString.length + movie.title.length < 135){
+            listString = `${listString}\n${movie.title}`;
+        }
+        else {
+          break;
+        }
+      }
+      data.status = listString;
+      mypageService.sendTweet(data).then((result) => {
+        console.log(result);
+      })
     }
   }
 }());
