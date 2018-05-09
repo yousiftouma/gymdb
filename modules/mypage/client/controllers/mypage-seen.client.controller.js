@@ -97,6 +97,10 @@
     }
 
     function postTweet() {
+      if (!(vm.user.provider === 'twitter' ||
+          vm.user.additionalProvidersData && vm.user.additionalProvidersData.twitter)) {
+        return;
+      }
       let data = {};
       let listString = 'These are my seen movies from GYmdb:';
       for (let i = 0; i < vm.movies.length; i++) {
