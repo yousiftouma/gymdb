@@ -13,7 +13,10 @@ let networkModule = require('../../../../config/lib/network');
 let config = require(path.resolve('./config/config'));
 
 /**
- * Create a Movie
+ * This method expects a tmbdId for a movie, a comment made by a user and an authenticate user in the request.
+ * Based on that tmdbId a movie will be fetched from the DB or created. The comment will be appended to the object and
+ * saved into the DB. the method will store the document to the response object and be sent to the caller.
+ * If something goes wrong during the process the response object will instead contain an error.
  */
 exports.createOrUpdate = function (req, res) {
   let doc = null;
@@ -25,7 +28,6 @@ exports.createOrUpdate = function (req, res) {
     }
     if (movie === undefined || movie.length === 0) {
       // Create a new movie document and persist in storage
-      console.log(req.user);
       doc = new Movie({
         tmdbId: req.body.movie,
         comments: [{
@@ -61,7 +63,9 @@ exports.createOrUpdate = function (req, res) {
 };
 
 /**
- * Show the current Movie
+ * This method expects a tmdbId for a movie in the request. This is used to make an http request to tmdb api to fetch
+ * data for the specified movie. Comment data for the movie is fetched from the GYmdb database and appended to the
+ * data received from tmdb. This is stored in the response object that is sent to the caller.
  */
 exports.read = function (req, res) {
   let options = {
@@ -92,7 +96,9 @@ exports.read = function (req, res) {
 };
 
 /**
- * Gets array of movie data based on an array of Tmdb ids
+ * This method expects a list of objects that contains tmdbIds in the request object. The method fetches movie
+ * data by making a request for each movie asynchronously. When all movies are fetched they are stored in the response
+ * object that is sent to the caller.
  */
 exports.getByIds = function (req, res) {
   let parsedIds = JSON.parse(req.params.ids);
@@ -124,7 +130,9 @@ exports.getByIds = function (req, res) {
 };
 
 /**
- * Search the tmdb movie database for movies using a query
+ * This method expects a search query for a movie and a page number in the request object. The query is a search string
+ * used to fetch movies from tmdb. The page is used to specify which page to receive since tmbd api is using pages for
+ * search results. The result is stored in the response object and sent to the caller.
  */
 exports.search = function (req, res) {
   let options = {

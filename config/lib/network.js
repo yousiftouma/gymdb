@@ -1,6 +1,10 @@
 'use strict';
 const https = require('https');
 
+/**
+ * This method expects a option parameter used to specifiy the https request and a callback onResult to be used when
+ * the request is done.
+ */
 module.exports.getJson = function (options, onResult) {
   let request = https.request(options, function (res) {
     let output = '';

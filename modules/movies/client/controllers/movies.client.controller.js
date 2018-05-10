@@ -13,12 +13,6 @@
     vm.previousPage = previousPage;
     vm.nextPage = nextPage;
     vm.currentPage = 1;
-    // Movies controller logic
-    // ...
-    init();
-
-    function init() {
-    }
 
     function doSearch() {
       if (vm.searchField !== null && vm.searchField !== '' && vm.searchField !== undefined) {
@@ -38,7 +32,7 @@
       console.log('logging error');
       console.log(error);
       Notification.error({
-        title: "Something went wrong!",
+        title: 'Something went wrong!',
         message: error,
         delay: 5000
       });

@@ -7,6 +7,11 @@
 
   requireAuth.$inject = ['$state', 'Authentication'];
 
+  /**
+   * This attribute directive will check whether a user is authorized or not to perform the task that used this
+   * directive. If not the state will be stored and the user will be directed to the sign in page. After a successful
+   * sign in the user will be directed back to the previous state. This directive is a "click" event.
+   */
   function requireAuth($state, auth) {
     return {
       restrict: 'A',

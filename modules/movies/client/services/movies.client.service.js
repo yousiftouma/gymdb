@@ -34,6 +34,7 @@
       },
       getMovies: function (movies) {
         if (movies.length === 0) {
+          // If there are no movies we don't need to make a call to the server.
           return new Promise(function (resolve) {
             return resolve({ data: movies });
           });

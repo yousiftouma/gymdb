@@ -7,6 +7,9 @@
 
   ngenter.$inject = [/* Example: '$state', '$window' */];
 
+  /**
+   * This directive is used to bind the return button to evaluate the attributes specified.
+   */
   function ngenter(/* Example: $state, $window */) {
     return {
       link: function postLink(scope, element, attrs) {

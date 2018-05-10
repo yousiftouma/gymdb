@@ -8,6 +8,12 @@
 	padding: 0;
 }
 
+/* csslint ignore:start */
+.comment-textarea:focus {
+	outline: none;
+}
+/* csslint ignore:end */
+
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 	color: #ced2db;
 }
@@ -81,7 +87,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 	text-overflow: ellipsis;
 	width: 10rem;
 }
-
 
 .bottom-comment {
 	bottom: 0;

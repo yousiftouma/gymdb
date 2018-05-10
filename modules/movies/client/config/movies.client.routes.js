@@ -41,8 +41,11 @@
     return movieService.getMovie($stateParams.id);
   }
 
+  /**
+   * Gets info about the logged in user in relation to the movie, i.e whether the movie is on the users watchlist and
+   * seen movies list.
+   */
   function getUserMovieInfo($stateParams, mypageService) {
-    // Gets info about the logged in user in relation to the movie
     return mypageService.getUserMovieInfo($stateParams.id);
   }
 }());

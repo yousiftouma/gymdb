@@ -18,23 +18,18 @@
     vm.movie = movieResolve.data;
     vm.userMovieInfo = userMovieInfoResolve.data;
     vm.user = authentication.user;
-    init();
-
-    function init() {
-    }
 
     function handleError(error) {
       console.log('error');
       console.log(error);
       Notification.error({
-        title: "Something went wrong!",
+        title: 'Something went wrong!',
         message: error,
         delay: 5000
       });
     }
 
     function showComment(response) {
-      console.log('success');
       vm.movie.comments = response.data.comments;
       vm.commentContent = '';
 
