@@ -12,10 +12,5 @@
 
     // Mypage controller logic
     // ...
-
-    init();
-
-    function init() {
-    }
   }
 }());

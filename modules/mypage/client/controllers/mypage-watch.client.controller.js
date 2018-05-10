@@ -21,14 +21,10 @@
     vm.removeFromWatchlist = removeFromWatchlist;
     vm.updateSeenMovies = updateSeenMovies;
     vm.postTweet = postTweet;
-    // Mypage controller logic
+    vm.finalPage = vm.watchlistLength <= 10;
+
+    // Mypage watchlist controller logic
     // ...
-
-    init();
-
-    function init() {
-      vm.finalPage = vm.watchlistLength <= 10;
-    }
 
     function removeFromWatchlist(movieId) {
       const data = { tmdbId: movieId, delete: true };
@@ -55,7 +51,7 @@
       console.log('Logging error');
       console.log(error);
       Notification.error({
-        title: "Something went wrong!",
+        title: 'Something went wrong!',
         message: error,
         delay: 5000
       });
@@ -103,8 +99,8 @@
     function postTweet() {
       if (!(vm.user.provider === 'twitter' ||
         vm.user.additionalProvidersData && vm.user.additionalProvidersData.twitter)) {
-      return;
-    }
+        return;
+      }
       let data = {};
       let listString = 'This is my watchlist from GYmdb:';
       for (let i = 0; i < vm.movies.length; i++) {
@@ -120,13 +116,13 @@
         if (result.data.errors) {
           let error = result.data.errors[0];
           Notification.error({
-            title: "Failed tweeting your list!",
+            title: 'Failed tweeting your list!',
             message: `Error Code: ${error.code}, Message: ${error.message}`,
             delay: 5000
           });
         } else {
           Notification.success({
-            title: "Tweet posted successfully!",
+            title: 'Tweet posted successfully!',
             delay: 5000
           });
         }
