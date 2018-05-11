@@ -48,13 +48,13 @@ module.exports = {
   },
   facebook: {
     clientID: process.env.FACEBOOK_ID || '770944193111770',
-    clientSecret: process.env.FACEBOOK_SECRET || 'd56a66d53874ba46c79c6904311404e9',
+    clientSecret: process.env.FACEBOOK_SECRET || 'secret',
     callbackURL: '/api/auth/facebook/callback'
   },
   twitter: {
     username: '@TWITTER_USERNAME',
     clientID: process.env.TWITTER_KEY || 'v2XzODhJDz6HHSX7bBCSIPI8F',
-    clientSecret: process.env.TWITTER_SECRET || 'm7VtBWelqJGsQQyJHO8caokafhbwwomvYmSVLBcWou40XfD6XE',
+    clientSecret: process.env.TWITTER_SECRET || 'secret',
     callbackURL: '/api/auth/twitter/callback',
     baseUrl: 'api.twitter.com'
   },
