@@ -28,7 +28,8 @@
 
     function removeFromSeenMovies(movieId) {
       const data = { tmdbId: movieId, delete: true };
-      mypageService.updateSeenMovies(data).then(() => {
+      mypageService.updateSeenMovies(data).then((result) => {
+        vm.seenMoviesLength = result.data.seenMovies.length;
         vm.movies = vm.movies.filter((movie) => {
           return movie.id !== movieId;
         });

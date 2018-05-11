@@ -28,7 +28,8 @@
 
     function removeFromWatchlist(movieId) {
       const data = { tmdbId: movieId, delete: true };
-      mypageService.updateWatchlist(data).then(() => {
+      mypageService.updateWatchlist(data).then((result) => {
+        vm.watchlistLength = result.data.watchlist.length;
         vm.movies = vm.movies.filter((movie) => {
           return movie.id !== movieId;
         });
