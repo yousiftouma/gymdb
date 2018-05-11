@@ -33,4 +33,8 @@ It might be worth noting that we plan to use "The Movie DB" API to get our data.
 If necessary, we can also integrate with IMDBs OmdbAPI which is also open,
 but requires payments to get access to everything.
 
+## Screen cast
+https://youtu.be/SkvqQjXJEzw
+
+
 
