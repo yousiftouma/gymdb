@@ -53,7 +53,7 @@ module.exports = {
   },
   twitter: {
     username: '@TWITTER_USERNAME',
-    clientID: process.env.TWITTER_KEY || 'v2XzODhJDz6HHSX7bBCSIPI8F',
+    clientID: process.env.TWITTER_KEY || 'AbUfs4AspgDqCmwfn7fisWu56',
     clientSecret: process.env.TWITTER_SECRET || 'secret',
     callbackURL: '/api/auth/twitter/callback',
     baseUrl: 'api.twitter.com'
